@@ -454,47 +454,47 @@ function setConvertedFrom(callToAction) {
         var modules = [
             {
                 'img': 'Blue Team.jpg',
-                'details-id': 'details-blue-team',
+                'details-id': 'blue-team',
                 'short-name': 'Blue Team'
             },
             {
                 'img': 'Forense Computacional.jpg',
-                'details-id': 'details-forense',
+                'details-id': 'forense',
                 'short-name': 'Forense'
             },
             {
                 'img': 'Red Team.jpg',
-                'details-id': 'details-red-team',
+                'details-id': 'red-team',
                 'short-name': 'Red Team'
             },
             {
                 'img': 'Segurança em Redes Computacionais.jpg',
-                'details-id': 'details-redes',
+                'details-id': 'redes',
                 'short-name': 'Redes'
             },
             {
                 'img': 'Segurança em Software.jpg',
-                'details-id': 'details-seg-software',
+                'details-id': 'seg-software',
                 'short-name': 'Segurança em Software'
             },
             {
                 'img': 'Desenvolvimento Seguro.jpg',
-                'details-id': 'details-dev-seguro',
+                'details-id': 'dev-seguro',
                 'short-name': 'Desenvolvimento Seguro'
             },
             {
                 'img': 'Segurança em Aplicações.jpg',
-                'details-id': 'details-seg-app',
+                'details-id': 'seg-app',
                 'short-name': 'App Sec'
             },
             {
                 'img': 'Segurança em Aplicações Web.jpg',
-                'details-id': 'details-seg-web',
+                'details-id': 'seg-web',
                 'short-name': 'Web'
             },
             {
                 'img': 'Criptografia.jpg',
-                'details-id': 'details-cripto',
+                'details-id': 'cripto',
                 'short-name': 'Criptografia'
             }
         ]
@@ -504,7 +504,7 @@ function setConvertedFrom(callToAction) {
             modulesHtmlEntry += '\
             <!-- Module -->\n\
             <div class="swiper-slide shine-figure">\n\
-                <a class="event-' + module['details-id'] + ' popup-with-move-anim "href="#' + module['details-id'] + '">\n\
+                <a target="' + module['details-id'] + '" class="event-details-' + module['details-id'] + ' popup-with-move-anim "href="#details-' + module['details-id'] + '">\n\
                     <figure><img class="img-fluid" src="images/capas-cursos/Profissão Hacker/' + module['img'] + '"></figure>\n\
                 </a>\n\
             </div>\n\n\
@@ -524,7 +524,7 @@ function setConvertedFrom(callToAction) {
             'left',
             '<span class="blue">[BÔNUS EXCLUSIVO]</span><br>Introdução à Cybersecurity',
             'shield.png',
-            'details-intro-cybersec',
+            'intro-cybersec',
             '<p class="blue"><i class="fas fa-exclamation-triangle"></i> MÓDULO BÔNUS EXCLUSIVO DESTE TREINAMENTO COMPLETO!</p>\n',
             '6',
             [
@@ -547,7 +547,7 @@ function setConvertedFrom(callToAction) {
             'right',
             'Estratégias de<br>Blue Team',
             'dashboard.png',
-            'details-blue-team',
+            'blue-team',
             '',
             '2',
             [
@@ -564,7 +564,7 @@ function setConvertedFrom(callToAction) {
             'left',
             'Estratégias de Forense<br>Computacional',
             'forensics.png',
-            'details-forense',
+            'forense',
             '',
             '2',
             [
@@ -584,7 +584,7 @@ function setConvertedFrom(callToAction) {
             'right',
             'Estratégias de<br>Red Team',
             'hacker.png',
-            'details-red-team',
+            'red-team',
             '',
             '4',
             [
@@ -608,7 +608,7 @@ function setConvertedFrom(callToAction) {
             'left',
             'Segurança em Redes<br>Computacionais',
             'computer.png',
-            'details-redes',
+            'redes',
             '',
             '8',
             [
@@ -636,7 +636,7 @@ function setConvertedFrom(callToAction) {
             'right',
             'Princípios de<br>Segurança em Software',
             'principle.png',
-            'details-seg-software',
+            'seg-software',
             '',
             '6',
             [
@@ -661,7 +661,7 @@ function setConvertedFrom(callToAction) {
             'left',
             'Desenvolvimento de<br>Software Seguro',
             'app-development.png',
-            'details-dev-seguro',
+            'dev-seguro',
             '',
             '1',
             [
@@ -679,7 +679,7 @@ function setConvertedFrom(callToAction) {
             'right',
             'Segurança em<br>Aplicações',
             'web-development.png',
-            'details-seg-app',
+            'seg-app',
             '',
             '12',
             [
@@ -713,7 +713,7 @@ function setConvertedFrom(callToAction) {
             'left',
             'Segurança em<br>Aplicações Web',
             'web-link.png',
-            'details-seg-web',
+            'seg-web',
             '',
             '8',
             [
@@ -743,7 +743,7 @@ function setConvertedFrom(callToAction) {
             'right',
             'Criptografia<br>Computacional',
             'encryption.png',
-            'details-cripto',
+            'cripto',
             '',
             '4',
             [
@@ -767,7 +767,7 @@ function setConvertedFrom(callToAction) {
             'left',
             '<span class="blue">[BÔNUS EXCLUSIVO]</span><br>Mercado de Trabalho',
             'talent-search.png',
-            'details-mercado',
+            'mercado',
             '<p class="blue"><i class="fas fa-exclamation-triangle"></i> MÓDULO BÔNUS EXCLUSIVO DESTE TREINAMENTO COMPLETO!</p>\n',
             '3',
             [
@@ -791,7 +791,7 @@ function setConvertedFrom(callToAction) {
             \n\
             <!-- Image -->\n\
             <div class="offset-lg-3 col-lg-2 col-sm-2 module-icon">\n\
-            <a class="event-' + lightboxId + ' popup-with-move-anim" href="#' + lightboxId + '">\n\
+            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' popup-with-move-anim" href="#details-' + lightboxId + '">\n\
             <img class="img-fluid icon" src="images/icons/' + iconFileName + '">\n\
             </a>\n\
             </div>\n\
@@ -804,7 +804,7 @@ function setConvertedFrom(callToAction) {
             <!-- Text -->\n\
             <div class="col-lg-5 col-sm-10 module-title">\n\
             <h3>' + title + '</h3>\n\
-            <a class="event-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#' + lightboxId + '">DETALHES</a>\n\
+            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">DETALHES</a>\n\
             </div>\n\
             </div> <!-- end of Visual Content -->\n\
             ';
@@ -817,7 +817,7 @@ function setConvertedFrom(callToAction) {
             <!-- Text -->\n\
             <div class="col-lg-5 col-sm-10 text-right module-title">\n\
             <h3>' + title + '</h3>\n\
-            <a class="event-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#' + lightboxId + '">DETALHES</a>\n\
+            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">DETALHES</a>\n\
             </div>\n\
             \n\
             <!-- Divider -->\n\
@@ -827,7 +827,7 @@ function setConvertedFrom(callToAction) {
             \n\
             <!-- Image -->\n\
             <div class="col-lg-2 col-sm-2 module-icon">\n\
-            <a class="event-' + lightboxId + ' popup-with-move-anim" href="#' + lightboxId + '">\n\
+            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' popup-with-move-anim" href="#details-' + lightboxId + '">\n\
             <img class="img-fluid" src="images/icons/' + iconFileName + '">\n\
             </a>\n\
             </div>\n\
@@ -845,7 +845,7 @@ function setConvertedFrom(callToAction) {
 
         var lightboxHtmlEntry = '\
         <!-- Lightbox -->\n\
-        <div id="' + lightboxId + '" class="lightbox-basic zoom-anim-dialog mfp-hide">\n\
+        <div id="details-' + lightboxId + '" class="lightbox-basic zoom-anim-dialog mfp-hide">\n\
         <div class="row">\n\
         \n\
         <!-- Close Button -->\n\
