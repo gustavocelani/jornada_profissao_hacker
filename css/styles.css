@@ -288,6 +288,15 @@ a.white {
 	padding-bottom: 0.5rem;
 }
 
+.bw-img {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+
+.a-disabled {
+	text-decoration: none;
+}
+
 /***************************************************************************************************************************************************/
 /* Collapsible */
 /***************************************************************************************************************************************************/
@@ -861,6 +870,10 @@ input[type='checkbox'] {
 	background-size: cover;
 }
 
+.header-module {
+	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), url('../images/backgrounds/background.png') center center no-repeat;
+}
+
 .header .header-content {
 	padding-top: 8.5rem;
 	padding-bottom: 7rem;
@@ -1311,7 +1324,7 @@ input[type='checkbox'] {
 .slider-2 {
 	padding-top: 6.875rem;
 	padding-bottom: 6.875rem;
-	background-color: #2c383d;
+	background-color: #242e31;
 }
 
 .slider-2 .slider-container {
@@ -1619,6 +1632,13 @@ a:hover.back-to-top {
 	pointer-events: none;
 }
 
+.disabled-a {
+	pointer-events: none;
+}
+
+.no-underline {
+	text-decoration: none;
+}
 
 /***************************************************************************************************************************************************/
 /* iOS Devices Supported Background Attachment */
@@ -2132,7 +2152,7 @@ a:hover.back-to-top {
 	/* end of navigation */
 
 	
-	/* General Styles */
+	/* General Styles *
 	.p-heading {
 		width: 44%;
 	}
