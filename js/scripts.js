@@ -44,7 +44,7 @@ function setConvertedFrom(callToAction) {
         $('#copyright-version-text').html('Developed and Maintained By <span class="blue">Gustavo Celani</span> - v' + globalVersion)
 
         // Dynamically Populated Content
-        // populateTestimonials();
+        populateTestimonials();
         populateModulosAvulsos();
         populateCoursesTimelineContent();
         populateModulesTimelineContent();
@@ -124,7 +124,7 @@ function setConvertedFrom(callToAction) {
     });
 
     /***************************************************************************************************************************************************/
-    /* Card Slider - Swiper */
+    /* Card Slider - Swiper (Testimonials) */
     /***************************************************************************************************************************************************/
     function startCardSlider(){
         var cardSlider = new Swiper('.card-slider', {
@@ -137,12 +137,12 @@ function setConvertedFrom(callToAction) {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
             },
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 20,
             breakpoints: {
                 // when window is <= 992px
                 992: {
-                    slidesPerView: 2
+                    slidesPerView: 1
                 },
                 // when window is <= 768px
                 768: {
@@ -153,7 +153,7 @@ function setConvertedFrom(callToAction) {
     }
 
     /***************************************************************************************************************************************************/
-    /* Image Slider - Swiper */
+    /* Image Slider - Swiper (Jornada) */
     /***************************************************************************************************************************************************/
     function startImageSlider() {
         var imageSlider = new Swiper('.image-slider', {
@@ -428,10 +428,23 @@ function setConvertedFrom(callToAction) {
     function populateTestimonials() {
         var testimonials = [
             {
-                "author": "[Nome] - [Cargo] [Empresa]",
-                "img": "person.jpg",
-                "msg": "Recomendo fortemente para qualquer pessoa interessada em aprender mais sobre cibersegurança."
-            }
+                "author": "Rodrigo",
+                "position": "Security Engineer - Canonical",
+                "img": "rodrigo.jpeg",
+                "msg": "Confio demais na seriedade e qualidade dessa jornada. Trabalhei com o Gustavo e ele sempre foi muito claro e objetivo, além de conseguir trazer conhecimento para todos os níveis com muita praticidade. Uma excelente oportunidade para estar em contato com um conteúdo atual e necessário."
+            },
+            {
+                "author": "Rafaela",
+                "position": "Full-Stack Developer - Sicoob Credimepi",
+                "img": "rafaela.jpeg",
+                "msg": "Participei da sua palestra incrível no HackTown e a partir dela despertou o meu interesse pela área de cibersegurança. Já garanti minha vaga para a Jornada e estou ansiosa para o lançamento!"
+            },
+            {
+                "author": "Erik",
+                "position": "Engineering Manager - Afterverse",
+                "img": "erik.jpeg",
+                "msg": "Trabalhei diretamente com o Gustavo e recomendo o treinamento não só para você que quer ingressar na área de cybersecurity mas também, para você que é dev ou devops e quer aprimorar seus conhecimentos e aplicar as melhores práticas de cybersecurity no seu dia a dia de trabalho."
+            },
         ]
 
         var testimonialHtmlEntry = '';
@@ -442,8 +455,8 @@ function setConvertedFrom(callToAction) {
                     <div class="card">\n\
                         <img class="card-image" src="images/testimonials/' + testimonial['img'] + '">\n\
                         <div class="card-body">\n\
-                            <p class="testimonial-text">' + testimonial['msg'] + '</p>\n\
-                            <p class="testimonial-author">' + testimonial['author'] + '</p>\n\
+                            <p class="testimonial-text">"' + testimonial['msg'] + '"</p>\n\
+                            <p class="testimonial-author">' + testimonial['author'] + '<br><span class="blue">' + testimonial['position'] + '</span></p>\n\
                         </div>\n\
                     </div>\n\
                 </div> <!-- end of slide -->\n\n'
