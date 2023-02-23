@@ -1701,6 +1701,13 @@ a:hover.back-to-top {
 	.header .image-container img {
 		max-width: 300px;
 	}
+
+	.header-img-big {
+		display: none;
+	}
+	.header-img-small {
+		display: inline-block;
+	}
 	/* end of header */
 
 	/* Testimonials */
@@ -1995,6 +2002,13 @@ a:hover.back-to-top {
 
 	.header .text-container {
 		margin-top: 6.5rem;
+	}
+
+	.header-img-big {
+		display: inline-block;
+	}
+	.header-img-small {
+		display: none;
 	}
 	/* end of Header */
 
