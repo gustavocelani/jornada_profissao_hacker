@@ -2,6 +2,7 @@
 /* Maintained by Gustavo Celani */
 /* Copyright 2023 All rights reserved */
 /***************************************************************************************************************************************************/
+const globalVersion = 0.4;
 
 /***************************************************************************************************************************************************/
 /* iOS Devices Supported Background Attachment */
@@ -39,10 +40,14 @@ function setConvertedFrom(callToAction) {
             }, 500);
         }
 
+        // Set Copyright Version Text
+        $('#copyright-version-text').html('Developed and Maintained By <span class="blue">Gustavo Celani</span> - v' + globalVersion)
+
         // Dynamically Populated Content
         // populateTestimonials();
-        populateTimelineContent();
         populateModulosAvulsos();
+        populateCoursesTimelineContent();
+        populateModulesTimelineContent();
 
         // Starting Animations and Interactions
         startLightboxAnimation();
@@ -453,59 +458,48 @@ function setConvertedFrom(callToAction) {
     function populateModulosAvulsos() {
         var modules = [
             {
-                'img': 'Blue Team.jpg',
-                'details-id': 'blue-team',
-                'short-name': 'Blue Team'
+                'id': 'estrategias-e-carreiras',
+                'available': true,
+                'text': '<span class="blue">PRÉ-LANÇAMENTO</span>'
             },
             {
-                'img': 'Forense Computacional.jpg',
-                'details-id': 'forense',
-                'short-name': 'Forense'
+                'id': 'sistemas-e-redes-computacionais',
+                'available': false,
+                'text': 'Inscrições Fechadas'
             },
             {
-                'img': 'Red Team.jpg',
-                'details-id': 'red-team',
-                'short-name': 'Red Team'
+                'id': 'desenvolvimento-de-software-seguro',
+                'available': false,
+                'text': 'Inscrições Fechadas'
             },
             {
-                'img': 'Segurança em Redes Computacionais.jpg',
-                'details-id': 'redes',
-                'short-name': 'Redes'
+                'id': 'seguranca-em-aplicacoes',
+                'available': false,
+                'text': 'Inscrições Fechadas'
             },
             {
-                'img': 'Segurança em Software.jpg',
-                'details-id': 'seg-software',
-                'short-name': 'Segurança em Software'
-            },
-            {
-                'img': 'Desenvolvimento Seguro.jpg',
-                'details-id': 'dev-seguro',
-                'short-name': 'Desenvolvimento Seguro'
-            },
-            {
-                'img': 'Segurança em Aplicações.jpg',
-                'details-id': 'seg-app',
-                'short-name': 'App Sec'
-            },
-            {
-                'img': 'Segurança em Aplicações Web.jpg',
-                'details-id': 'seg-web',
-                'short-name': 'Web'
-            },
-            {
-                'img': 'Criptografia.jpg',
-                'details-id': 'cripto',
-                'short-name': 'Criptografia'
+                'id': 'ferramentas-e-hands-on-hacking',
+                'available': false,
+                'text': 'Inscrições Fechadas'
             }
         ]
 
         var modulesHtmlEntry = '';
         modules.forEach(module => {
+            var imgExtraClasses = ''
+            var aExtraClasses = ''
+
+            if (!module['available']) {
+                imgExtraClasses = 'bw-img'
+                aExtraClasses = 'disabled-a'
+            }
+
             modulesHtmlEntry += '\
             <!-- Module -->\n\
             <div class="swiper-slide shine-figure">\n\
-                <a target="' + module['details-id'] + '" class="event-details-' + module['details-id'] + ' popup-with-move-anim "href="#details-' + module['details-id'] + '">\n\
-                    <figure><img class="img-fluid" src="images/capas-cursos/Profissão Hacker/' + module['img'] + '"></figure>\n\
+                <a class="' + aExtraClasses + ' no-underline event-details-' + module['id'] + ' "href="' + module['id'] + '.html">\n\
+                    <figure><img class="' + imgExtraClasses + ' img-fluid" src="images/capas-cursos/' + module['id'] + '.jpg"></figure>\n\
+                    <p>' + module['text'] + '</p>\n\
                 </a>\n\
             </div>\n\n\
             ';
@@ -515,22 +509,145 @@ function setConvertedFrom(callToAction) {
     }
 
     /***************************************************************************************************************************************************/
-    /* Dynamically Populate Timeline Content */
+    /* Dynamically Populate Courses Timeline Content */
     /***************************************************************************************************************************************************/
-    function populateTimelineContent() {
+    function populateCoursesTimelineContent() {
+
+        // Estratégias & Carreiras
+        $('#content-jornada-estrategias-carreiras').html(buildCourseTimelineContent(
+            'left',
+            '<span class="blue">[PRÉ-LANÇAMENTO]</span><br>Estratégias & Carreiras',
+            'talent-search.png',
+            'estrategias-e-carreiras',
+            true
+        ));
+
+        // Sistemas & Redes Computacionais
+        $('#content-jornada-sistemas-redes').html(buildCourseTimelineContent(
+            'right',
+            'Sistemas & Redes<br>Computacionais',
+            'computer.png',
+            'sistemas-e-redes-computacionais',
+            false
+        ));
+
+        // Desenvolvimento de Software Seguro
+        $('#content-jornada-dev-seguro').html(buildCourseTimelineContent(
+            'left',
+            'Desenvolvimento de<br>Software Seguro',
+            'principle.png',
+            'desenvolvimento-de-software-seguro',
+            false
+        ));
+
+        // Segurança em Aplicações
+        $('#content-jornada-appsec').html(buildCourseTimelineContent(
+            'right',
+            'Segurança em<br>Aplicações',
+            'app-development.png',
+            'segurança-em-aplicações',
+            false
+        ));
+
+        // Ferramentas & Hands On Hacking
+        $('#content-jornada-hacking').html(buildCourseTimelineContent(
+            'left',
+            'Ferramentas &<br>Hands On Hacking',
+            'hacker.png',
+            'ferramentas-e-hands-on-hacking',
+            false
+        ));
+    }
+
+    function buildCourseTimelineContent(orientation, title, iconFileName, id, available) {
+        var visualContentHtmlEntry = ''
+        var imgExtraClasses = ''
+        var btnExtraClasses = ''
+        var aExtraClasses = ''
+        var btnText = 'DETALHES DO TREINAMENTO'
+
+        if (!available) {
+            imgExtraClasses = 'bw-img'
+            btnExtraClasses = 'disabled-button'
+            aExtraClasses = 'disabled-a'
+            btnText = 'INSCRIÇÕES FECHADAS'
+        }
+
+        if (orientation == 'left') {
+            visualContentHtmlEntry = '\
+            <!-- Visual Content -->\n\
+            <div class="row module-row">\n\
+            \n\
+            <!-- Image -->\n\
+            <div class="offset-lg-3 col-lg-2 col-sm-2 module-icon">\n\
+            <a target="' + id + '" class="event-details-' + id + ' ' + aExtraClasses + '" href="' + id + '.html">\n\
+            <img class="img-fluid ' + imgExtraClasses + '" src="images/icons/' + iconFileName + '">\n\
+            </a>\n\
+            </div>\n\
+            \n\
+            <!-- Divider -->\n\
+            <div class="divider col-lg-2 col-sm-2 text-center">\n\
+            <img class="img-fluid" style="height: 15rem;" src="images/components/timeline.png">\n\
+            </div>\n\
+            \n\
+            <!-- Text -->\n\
+            <div class="col-lg-5 col-sm-10 module-title">\n\
+            <h3>' + title + '</h3>\n\
+            <a target="' + id + '" class="event-details-' + id + ' btn-solid-reg ' + btnExtraClasses + '" href="' + id + '.html">' + btnText + '</a>\n\
+            </div>\n\
+            </div> <!-- end of Visual Content -->\n\
+            ';
+
+        } else if (orientation == 'right') {
+            visualContentHtmlEntry = '\
+            <!-- Visual Content -->\n\
+            <div class="row module-row">\n\
+            \n\
+            <!-- Text -->\n\
+            <div class="col-lg-5 col-sm-10 text-right module-title">\n\
+            <h3>' + title + '</h3>\n\
+            <a target="' + id + '" class="event-details-' + id + ' btn-solid-reg ' + btnExtraClasses + '" href="' + id + '.html">' + btnText + '</a>\n\
+            </div>\n\
+            \n\
+            <!-- Divider -->\n\
+            <div class="divider col-lg-2 col-sm-2 text-center">\n\
+            <img class="img-fluid" style="height: 15rem;" src="images/components/timeline.png">\n\
+            </div>\n\
+            \n\
+            <!-- Image -->\n\
+            <div class="col-lg-2 col-sm-2 module-icon">\n\
+            <a target="' + id + '" class="event-details-' + id + ' ' + aExtraClasses + '" href="' + id + '.html">\n\
+            <img class="img-fluid ' + imgExtraClasses + '" src="images/icons/' + iconFileName + '">\n\
+            </a>\n\
+            </div>\n\
+            </div> <!-- end of Visual Content -->\n\
+            ';
+
+        } else {
+            return null;
+        }
+
+        return visualContentHtmlEntry;
+    }
+
+    /***************************************************************************************************************************************************/
+    /* Dynamically Populate Modules Timeline Content */
+    /***************************************************************************************************************************************************/
+    function populateModulesTimelineContent() {
 
         // Introdução à Cybersecurity
-        $('#content-intro-cybersec').html(buildTrainningModuleContent(
+        $('#content-intro-cybersec').html(buildModuleTimelineContent(
             'left',
-            '<span class="blue">[BÔNUS EXCLUSIVO]</span><br>Introdução à Cybersecurity',
+            'Introdução à<br>Cybersecurity',
             'shield.png',
             'intro-cybersec',
-            '<p class="blue"><i class="fas fa-exclamation-triangle"></i> MÓDULO BÔNUS EXCLUSIVO DESTE TREINAMENTO COMPLETO!</p>\n',
+            '',
             '6',
             [
-                'O que é "Informação"?',
+                'O Valor da "Informação"',
+                'E se não existisse Cybersecurity por 1 Dia?',
                 'Submundo dos Cyber Crimes',
-                'Bastidores de um Ataque Ransomware',
+                'Anatomia de um Cyber Ataque',
                 'Anatomia de um Ataque Ransomware',
                 'Hacker Attack & Defense',
                 'Atividades em Tempo Real de Ameaças Cibernéticas',
@@ -543,7 +660,7 @@ function setConvertedFrom(callToAction) {
         ));
 
         // Estratégias de Blue Team
-        $('#content-blue-team').html(buildTrainningModuleContent(
+        $('#content-blue-team').html(buildModuleTimelineContent(
             'right',
             'Estratégias de<br>Blue Team',
             'dashboard.png',
@@ -551,16 +668,17 @@ function setConvertedFrom(callToAction) {
             '',
             '2',
             [
+                'Blue Team',
                 'SOC (Security Operations Centre)',
                 'Inteligência & Contrainteligência (Threat Intelligence)',
                 'Gestão de Incidentes de Segurança',
                 'Resposta à Incidentes de Segurança',
-                'Exemplo de Tratamento de Incidente de Segurança',
+                'TTX (Table Top Exercises)',
             ]
         ));
 
         // Estratégias de Forense Computacional
-        $('#content-forense').html(buildTrainningModuleContent(
+        $('#content-forense').html(buildModuleTimelineContent(
             'left',
             'Estratégias de Forense<br>Computacional',
             'forensics.png',
@@ -570,7 +688,7 @@ function setConvertedFrom(callToAction) {
             [
                 'Forense Computacional',
                 'Principais Conceitos',
-                'Memória Computacional',
+                'Memória Computacional (VS Computação Quântica)',
                 'Sistema de Arquivos (Filesystem)',
                 'Metadados',
                 'Análise de Memória',
@@ -579,8 +697,26 @@ function setConvertedFrom(callToAction) {
             ]
         ));
 
+        // Mercado de Trabalho
+        $('#content-mercado').html(buildModuleTimelineContent(
+            'left',
+            '<span class="blue">[BÔNUS EXCLUSIVO]</span><br>Mercado de Trabalho',
+            'talent-search.png',
+            'mercado',
+            '',
+            '3',
+            [
+                'Ecossistema de Cybersecurity: Zero Day',
+                'Ecossistema de Cybersecurity: Corporativo',
+                'Hard Skills vs Soft Skills',
+                'Trilha para o Desenvolvimento Profissional',
+                'Tendências para o Futuro',
+                'Próximos Passos'
+            ]
+        ));
+
         // Estratégias de Red Team
-        $('#content-red-team').html(buildTrainningModuleContent(
+        $('#content-red-team').html(buildModuleTimelineContent(
             'right',
             'Estratégias de<br>Red Team',
             'hacker.png',
@@ -604,7 +740,7 @@ function setConvertedFrom(callToAction) {
         ));
 
         // Segurança em Redes Computacionais
-        $('#content-redes').html(buildTrainningModuleContent(
+        $('#content-redes').html(buildModuleTimelineContent(
             'left',
             'Segurança em Redes<br>Computacionais',
             'computer.png',
@@ -632,7 +768,7 @@ function setConvertedFrom(callToAction) {
         ));
 
         // Princípios de Segurança em Software
-        $('#content-seg-software').html(buildTrainningModuleContent(
+        $('#content-seg-software').html(buildModuleTimelineContent(
             'right',
             'Princípios de<br>Segurança em Software',
             'principle.png',
@@ -657,7 +793,7 @@ function setConvertedFrom(callToAction) {
         ));
 
         // Desenvolvimento de Software Seguro
-        $('#content-dev-seguro').html(buildTrainningModuleContent(
+        $('#content-dev-seguro').html(buildModuleTimelineContent(
             'left',
             'Desenvolvimento de<br>Software Seguro',
             'app-development.png',
@@ -675,7 +811,7 @@ function setConvertedFrom(callToAction) {
         ));
 
         // Segurança em Aplicações
-        $('#content-seg-app').html(buildTrainningModuleContent(
+        $('#content-seg-app').html(buildModuleTimelineContent(
             'right',
             'Segurança em<br>Aplicações',
             'web-development.png',
@@ -709,7 +845,7 @@ function setConvertedFrom(callToAction) {
         ));
 
         // Segurança em Aplicações Web
-        $('#content-seg-web').html(buildTrainningModuleContent(
+        $('#content-seg-web').html(buildModuleTimelineContent(
             'left',
             'Segurança em<br>Aplicações Web',
             'web-link.png',
@@ -739,7 +875,7 @@ function setConvertedFrom(callToAction) {
         ));
 
         // Criptografia
-        $('#content-cripto').html(buildTrainningModuleContent(
+        $('#content-cripto').html(buildModuleTimelineContent(
             'right',
             'Criptografia<br>Computacional',
             'encryption.png',
@@ -761,27 +897,9 @@ function setConvertedFrom(callToAction) {
                 'Computação Quântica na Criptografia',
             ]
         ));
-
-        // Mercado de Trabalho
-        $('#content-mercado').html(buildTrainningModuleContent(
-            'left',
-            '<span class="blue">[BÔNUS EXCLUSIVO]</span><br>Mercado de Trabalho',
-            'talent-search.png',
-            'mercado',
-            '<p class="blue"><i class="fas fa-exclamation-triangle"></i> MÓDULO BÔNUS EXCLUSIVO DESTE TREINAMENTO COMPLETO!</p>\n',
-            '3',
-            [
-                'Ecossistema de Cybersecurity: Zero Day',
-                'Ecossistema de Cybersecurity: Corporativo',
-                'Hard Skills vs Soft Skills',
-                'Trilha para o Desenvolvimento Profissional',
-                'Tendências para o Futuro',
-                'Próximos Passos'
-            ]
-        ));
     }
 
-    function buildTrainningModuleContent(orientation, title, iconFileName, lightboxId, customHtmlMessage, iconMargin, videoNamesList) {
+    function buildModuleTimelineContent(orientation, title, iconFileName, lightboxId, customHtmlMessage, iconMargin, videoNamesList) {
         var visualContentHtmlEntry = '';
 
         if (orientation == 'left') {
@@ -804,7 +922,7 @@ function setConvertedFrom(callToAction) {
             <!-- Text -->\n\
             <div class="col-lg-5 col-sm-10 module-title">\n\
             <h3>' + title + '</h3>\n\
-            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">DETALHES</a>\n\
+            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">CONTEÚDO</a>\n\
             </div>\n\
             </div> <!-- end of Visual Content -->\n\
             ';
@@ -817,7 +935,7 @@ function setConvertedFrom(callToAction) {
             <!-- Text -->\n\
             <div class="col-lg-5 col-sm-10 text-right module-title">\n\
             <h3>' + title + '</h3>\n\
-            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">DETALHES</a>\n\
+            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">CONTEÚDO</a>\n\
             </div>\n\
             \n\
             <!-- Divider -->\n\
