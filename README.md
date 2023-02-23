@@ -1,3 +1,3 @@
 # WebSite Jornada Profissão Hacker
 
-![WebSite Jornada Profissão Hacker](frontend-v02.png "v0.2")
+![WebSite Jornada Profissão Hacker](hist/frontend-v04.png "v0.4")
