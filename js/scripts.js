@@ -45,7 +45,7 @@ function setConvertedFrom(callToAction) {
 
         // Dynamically Populated Content
         populateTestimonials();
-        populateModulosAvulsos();
+        populateJornadaSlider();
         populateCoursesTimelineContent();
         populateModulesTimelineContent();
 
@@ -466,9 +466,9 @@ function setConvertedFrom(callToAction) {
     }
 
     /***************************************************************************************************************************************************/
-    /* Dynamically Populate Modules */
+    /* Dynamically Populate Jornada Slider */
     /***************************************************************************************************************************************************/
-    function populateModulosAvulsos() {
+    function populateJornadaSlider() {
         var modules = [
             {
                 'id': 'estrategias-e-carreiras',
@@ -491,7 +491,7 @@ function setConvertedFrom(callToAction) {
                 'text': 'Inscrições Fechadas'
             },
             {
-                'id': 'ferramentas-e-hands-on-hacking',
+                'id': 'hands-on-hacking',
                 'available': false,
                 'text': 'Inscrições Fechadas'
             }
@@ -565,9 +565,9 @@ function setConvertedFrom(callToAction) {
         // Ferramentas & Hands On Hacking
         $('#content-jornada-hacking').html(buildCourseTimelineContent(
             'left',
-            'Ferramentas &<br>Hands On Hacking',
+            'Hands On<br>Hacking',
             'hacker.png',
-            'ferramentas-e-hands-on-hacking',
+            'hands-on-hacking',
             false
         ));
     }
