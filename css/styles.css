@@ -872,6 +872,14 @@ input[type='checkbox'] {
 
 .header-module {
 	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), url('../images/backgrounds/background.png') center center no-repeat;
+	background-size: cover;
+
+	/* Create the parallax scrolling effect */
+	min-height: 500px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .header .header-content {

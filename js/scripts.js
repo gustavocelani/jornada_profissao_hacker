@@ -9,7 +9,7 @@ const globalVersion = 0.4;
 /***************************************************************************************************************************************************/
 ['iPhone', 'iPad', 'iPod'].forEach(iosDevice => {
     if (navigator.userAgent.includes(iosDevice)) {
-        ['#header', '#gustavo', '#treinamento', '#leads'].forEach(parallaxSection => {
+        ['#header', '#header-module', '#gustavo', '#treinamento', '#leads'].forEach(parallaxSection => {
             $(parallaxSection).addClass('ios-device');
         })
     }
