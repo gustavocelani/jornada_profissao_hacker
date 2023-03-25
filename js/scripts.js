@@ -2,7 +2,7 @@
 /* Maintained by Gustavo Celani */
 /* Copyright 2023 All rights reserved */
 /***************************************************************************************************************************************************/
-const globalVersion = 0.4;
+const globalVersion = 0.6;
 
 /***************************************************************************************************************************************************/
 /* iOS Devices Supported Background Attachment */
@@ -21,6 +21,20 @@ const globalVersion = 0.4;
 var convertedFrom = 'WebSite'
 function setConvertedFrom(callToAction) {
     convertedFrom = callToAction
+}
+
+/***************************************************************************************************************************************************/
+/* On Load Pop-Up */
+/***************************************************************************************************************************************************/
+function spawnOnLoadPopup(afterSeconds) {
+    new Promise((resolve) => setTimeout(resolve, afterSeconds * 1000)).then(() => {
+        document.getElementById('onload-popup-button').click();
+    });
+}
+function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
+    console.log(convertedFrom)
+    document.getElementById('onload-popup-close-button').click();
+    setConvertedFrom(convertedFrom);
 }
 
 /***************************************************************************************************************************************************/
@@ -48,14 +62,20 @@ function setConvertedFrom(callToAction) {
         populateJornadaSlider();
         populateCoursesTimelineContent();
         populateModulesTimelineContent();
+        headerVideoSetup();
 
         // Starting Animations and Interactions
         startLightboxAnimation();
         startImageSlider();
         startCardSlider();
+        startCountdown("04/05/2023"); // Format: mm/dd/yyyy
         hidePreloader();
 
-        getGeolocation();
+        // Get Geolocation
+        // getGeolocation();
+
+        // On Load Popup
+        spawnOnLoadPopup(5);
     });
 
     /***************************************************************************************************************************************************/
@@ -199,6 +219,34 @@ function setConvertedFrom(callToAction) {
     }
 
     /***************************************************************************************************************************************************/
+    /* Start Countdown */
+    /***************************************************************************************************************************************************/
+    function startCountdown(targetDate) {
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+
+        const countDown = new Date(targetDate).getTime();
+        const x = setInterval(function() {
+
+            const now = new Date().getTime();
+            const distance = countDown - now;
+
+            document.getElementById("countdown-days").innerText = Math.floor(distance / (day)),
+            document.getElementById("countdown-hours").innerText = Math.floor((distance % (day)) / (hour)),
+            document.getElementById("countdown-minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+            document.getElementById("countdown-seconds").innerText = Math.floor((distance % (minute)) / second);
+
+            // Date is Reached
+            if (distance < 0) {
+                clearInterval(x);
+            }
+
+        }, 0)
+    }
+
+    /***************************************************************************************************************************************************/
     /* Image Slider - Magnific Popup */
     /***************************************************************************************************************************************************/
     $('.popup-link').magnificPopup({
@@ -250,6 +298,17 @@ function setConvertedFrom(callToAction) {
             }
         }
     });
+    function headerVideoSetup() {
+        const headerVideos = document.getElementsByClassName("header-youtube-player")
+        for (let i = 0; i < headerVideos.length; i++) {
+            headerVideos[i].src = 'http://www.youtube.com/embed/jplipRbZnm8'
+                + '?autoplay=1' // Auto Play
+                + '&controls=1' // YouTube Controls
+                + '&rel=0'      // Related Videos
+                + '&loop=1'     // Loop
+                + '&fs=0'       // Full Screen
+        }
+    }
 
     /***************************************************************************************************************************************************/
     /* Lightbox - Magnific Popup */
@@ -658,13 +717,13 @@ function setConvertedFrom(callToAction) {
             '6',
             [
                 'O Valor da "Informação"',
-                'E se não existisse Cybersecurity por 1 Dia?',
-                'Submundo dos Cyber Crimes',
+                'Um Único Dia Sem Cybersecurity',
+                'Submundo dos Cybercrimes',
                 'Anatomia de um Cyber Ataque',
                 'Anatomia de um Ataque Ransomware',
                 'Hacker Attack & Defense',
-                'Atividades em Tempo Real de Ameaças Cibernéticas',
-                'Tipos de Hackers',
+                'Atividades de Ameaças Cibernéticas em Tempo Real',
+                'Os Diferentes Tipos de Hackers',
                 'Ameaças Cibernéticas',
                 'Os Pilares da Segurança da Infomação',
                 'Família ISO 27000',
@@ -686,7 +745,7 @@ function setConvertedFrom(callToAction) {
                 'Inteligência & Contrainteligência (Threat Intelligence)',
                 'Gestão de Incidentes de Segurança',
                 'Resposta à Incidentes de Segurança',
-                'TTX (Table Top Exercises)',
+                'TTX - Table Top Exercises',
             ]
         ));
 
@@ -704,27 +763,9 @@ function setConvertedFrom(callToAction) {
                 'Memória Computacional (VS Computação Quântica)',
                 'Sistema de Arquivos (Filesystem)',
                 'Metadados',
-                'Análise de Memória',
+                'Análise de Memória (Recuperação de Arquivos Deletados)',
                 'Tipos de Malware',
                 'Análise de Malware',
-            ]
-        ));
-
-        // Mercado de Trabalho
-        $('#content-mercado').html(buildModuleTimelineContent(
-            'left',
-            '<span class="blue">[BÔNUS EXCLUSIVO]</span><br>Mercado de Trabalho',
-            'talent-search.png',
-            'mercado',
-            '',
-            '3',
-            [
-                'Ecossistema de Cybersecurity: Zero Day',
-                'Ecossistema de Cybersecurity: Corporativo',
-                'Hard Skills vs Soft Skills',
-                'Trilha para o Desenvolvimento Profissional',
-                'Tendências para o Futuro',
-                'Próximos Passos'
             ]
         ));
 
@@ -735,20 +776,51 @@ function setConvertedFrom(callToAction) {
             'hacker.png',
             'red-team',
             '',
-            '4',
+            '3',
             [
-                'Hacker Ético',
+                'Red Team & Ethical Hackers',
                 'Tipos de PenTest',
                 'Planejamento de um PenTest',
-                'Exemplo Prático de Regras de um PenTest',
                 'Metodologias de PenTest',
-                'Etapa #1: Reconhecimento',
-                'Etapa #2: Enumeração',
-                'Etapa #3: Exploração',
-                'Etapa #4: Escalada de Privilégios',
-                'Etapa #5: Pós Exploração',
-                'Etapa #6: Relatório',
-                'Resumo das Etapas de PenTest',
+                '#1 Reconhecimento',
+                '#2 Enumeração',
+                '#3 Exploração',
+                '#4 Escalada de Privilégios',
+                '#5 Pós Exploração',
+                '#6 Relatório'
+            ]
+        ));
+
+        // Estratégias de Red Team
+        $('#content-hacking-pratica').html(buildModuleTimelineContent(
+            'left',
+            '<span class="blue">[ BÔNUS ]</span><br>Hacking na Prática',
+            'hacker_red.png',
+            'hacking-pratica',
+            'CONTEÚDO BÔNUS',
+            '2',
+            [
+                'Hackeando um Servidor Web na Prática',
+                'Mindset Hacker'
+            ]
+        ));
+
+        // Mercado de Trabalho
+        $('#content-mercado').html(buildModuleTimelineContent(
+            'right',
+            '<span class="blue">[ EXCLUSIVO ]</span><br>Mercado de Trabalho',
+            'talent-search.png',
+            'mercado',
+            'EXCLUSIVO DESTE TREINAMENTO',
+            '3',
+            [
+                'Ecossistema de Cybersecurity',
+                'Segredo do Sucesso',
+                'Como ser Contratado(a)',
+                '#1 "Hard Skills Te Fazem Participar do Processo Seletivo"',
+                '#2 "Ambos (Skills) Te Fazem Ser Contratado"',
+                '#3 "Evolução Contínua Te Faz Prosperar"',
+                'Próximos Passos'
             ]
         ));
 
@@ -984,8 +1056,8 @@ function setConvertedFrom(callToAction) {
         \n\
         <div class="col-lg-9">\n\
         <h3>' + title + '</h3>\n\
+        <b class="blue">' + customHtmlMessage + '</b>\n\
         <hr>\n\
-        ' + customHtmlMessage + '\n\
         <h4>Conteúdo Detalhado</h4>\n\
         <table>\n\
         ' + lightboxListHtmlEntry + '\n\
