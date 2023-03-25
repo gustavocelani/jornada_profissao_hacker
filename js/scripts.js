@@ -436,9 +436,6 @@ function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
         document.getElementById("leadFormSubmitResult").setAttribute('hidden', '')
         $("#spawn-form-lightbox").click();
 
-        // Campanha LinkedIn
-        window.lintrk('track', { conversion_id: 12976889 });
-
         $("#leadForm")[0].reset();
         $("input").removeClass('notEmpty');
         $("textarea").removeClass('notEmpty');
