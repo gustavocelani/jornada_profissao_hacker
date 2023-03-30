@@ -31,8 +31,8 @@ function spawnOnLoadPopup(afterSeconds) {
         document.getElementById('onload-popup-button').click();
     });
 }
-function closePopupAndSetConvertedFrom(id, convertedFrom) {
-    document.getElementById(id).click();
+function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
+    document.getElementById(closeButtonId).click();
     setConvertedFrom(convertedFrom);
 }
 
