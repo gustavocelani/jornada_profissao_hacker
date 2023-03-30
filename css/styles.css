@@ -77,6 +77,19 @@ h6 {
 	font: 700 1rem/1.5rem "Montserrat", sans-serif;
 }
 
+hr {
+	width: 3.75rem;
+	height: 0.125rem;
+	border: 0;
+	background-color: #00c9db;
+}
+
+.hr-left {
+	margin-top: 0.125rem;
+	margin-bottom: 1.125rem;
+	margin-left: 0;
+}
+
 .blue {
 	color: #00c9db;
 }
@@ -972,11 +985,26 @@ input[type='checkbox'] {
 /***************************************************************************************************************************************************/
 /* Treinamento - Tabs */
 /***************************************************************************************************************************************************/
-.tabs {
+.product {
 	padding-top: 6.5rem;
 	padding-bottom: 4.25rem;
 	background-color: #2c383d;
 	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/hand-bw.jpg') center center no-repeat;
+	background-size: cover;
+
+	/* Create the parallax scrolling effect */
+	min-height: 500px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.tabs {
+	padding-top: 6.5rem;
+	padding-bottom: 4.25rem;
+	background-color: #2c383d;
+	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/speaking-bw.jpg') center center no-repeat;
 	background-size: cover;
 
 	/* Create the parallax scrolling effect */
@@ -1445,6 +1473,21 @@ input[type='checkbox'] {
 /***************************************************************************************************************************************************/
 /* Leads */
 /***************************************************************************************************************************************************/
+.leads {
+	padding-top: 6.5rem;
+	padding-bottom: 4.25rem;
+	background-color: #2c383d;
+	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/folks-bw.jpg') center center no-repeat;
+	background-size: cover;
+
+	/* Create the parallax scrolling effect */
+	min-height: 500px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 .form {
 	padding-top: 6.25rem;
 	padding-bottom: 5.625rem;

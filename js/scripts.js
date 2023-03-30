@@ -2,14 +2,14 @@
 /* Maintained by Gustavo Celani */
 /* Copyright 2023 All rights reserved */
 /***************************************************************************************************************************************************/
-const globalVersion = 0.6;
+const globalVersion = 0.8;
 
 /***************************************************************************************************************************************************/
 /* iOS Devices Supported Background Attachment */
 /***************************************************************************************************************************************************/
 ['iPhone', 'iPad', 'iPod'].forEach(iosDevice => {
     if (navigator.userAgent.includes(iosDevice)) {
-        ['#header', '#header-module', '#gustavo', '#treinamento', '#leads'].forEach(parallaxSection => {
+        ['#header', '#header-module', '#gustavo', '#treinamento', '#leads', "#product"].forEach(parallaxSection => {
             $(parallaxSection).addClass('ios-device');
         })
     }
@@ -24,16 +24,15 @@ function setConvertedFrom(callToAction) {
 }
 
 /***************************************************************************************************************************************************/
-/* On Load Pop-Up */
+/* Pop-Up */
 /***************************************************************************************************************************************************/
 function spawnOnLoadPopup(afterSeconds) {
     new Promise((resolve) => setTimeout(resolve, afterSeconds * 1000)).then(() => {
         document.getElementById('onload-popup-button').click();
     });
 }
-function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
-    console.log(convertedFrom)
-    document.getElementById('onload-popup-close-button').click();
+function closePopupAndSetConvertedFrom(id, convertedFrom) {
+    document.getElementById(id).click();
     setConvertedFrom(convertedFrom);
 }
 
@@ -344,13 +343,13 @@ function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
                         countNum: countTo
                     },
                     {
-                        duration: 2000,
+                        duration: 6000,
                         easing: 'swing',
                         step: function() {
-                            $this.text(Math.floor(this.countNum));
+                            $this.text($this.hasClass('plus') ? Math.floor(this.countNum) + '+' : Math.floor(this.countNum));
                         },
                         complete: function() {
-                            $this.text(this.countNum);
+                            $this.text($this.hasClass('plus') ? this.countNum + '+' : this.countNum);
                             //alert('finished');
                         }
                     });
@@ -406,7 +405,7 @@ function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
         $.ajax({
             type: "POST",
             crossDomain: true,
-            url: "https://script.google.com/macros/s/AKfycbwQ_6dOSa0OZKhlIjyG4SyqiHS-rd0245NFpgUNj8RRH-MNfdBr5aRfOSI8GtaJGnxD/exec",
+            url: "https://script.google.com/macros/s/AKfycbzThA1wBsk6K_eZKsRDgM-ArKemeQ7MT98SWGV1PxYQiHw0PJx0GMPVL0SmoMxLFAVF/exec",            
             data: {
                 "latitude":           latitude,
                 "longitude":          longitude,
@@ -421,7 +420,7 @@ function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
             },
 
             success: function(apiResponse) {
-                apiResponse['result'] == 'success' ? leadFormSuccess() : leadFormError(apiResponse['message']);
+                apiResponse['result'] == 'success' ? leadFormSuccess(apiResponse) : leadFormError(apiResponse['message']);
                 setLeadFormSubmitButtonStatus(true)
             },
 
@@ -432,10 +431,25 @@ function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
         });
     }
 
-    function leadFormSuccess() {
+    function leadFormSuccess(apiResponse) {
+        // Building PopUp
+        document.getElementById("cupom").innerText = apiResponse['cupom']
+        document.getElementById("cupom-expire").innerText = apiResponse['expire_at']
+        document.getElementById("cupom-button").setAttribute('href', apiResponse['url'])
+
+        // Spawn PopUp
         document.getElementById("leadFormSubmitResult").setAttribute('hidden', '')
         $("#spawn-form-lightbox").click();
 
+        // Success Message
+        leadFormMessage(
+            'success',
+            '<i class="fas fa-ticket-alt"></i> ' + apiResponse['cupom'] +
+            '<br><p>Válido até ' + apiResponse['expire_at'] + '</p>' + 
+            '<a id="cupom-button" target="_blank" onclick="setConvertedFrom(\'Cupom\')" class="event-cta-cupom text-center green" href="' + apiResponse['url'] + '"><p class="green" >ADQUIRIR O TREINAMENTO AGORA!</p></a>'
+        )
+
+        // Reset Form
         $("#leadForm")[0].reset();
         $("input").removeClass('notEmpty');
         $("textarea").removeClass('notEmpty');
@@ -455,14 +469,14 @@ function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
         var classes = "text-center tada animated "
         switch (type) {
             case 'success':
-                classes += 'h4 green'
+                classes += 'h2 green'
                 break
             case 'error':
                 classes += 'p red'
                 break
         }
 
-        $("#leadFormSubmitResult").removeClass().addClass(classes).text(message);
+        $("#leadFormSubmitResult").removeClass().addClass(classes).html(message);
     }
 
     /***************************************************************************************************************************************************/
@@ -1055,7 +1069,7 @@ function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
         <div class="row">\n\
         \n\
         <!-- Close Button -->\n\
-        <button title="Fechar (Esc)" type="button" class="mfp-close x-button">x</button>\n\
+        <button id="exit-details-' + lightboxId + '" title="Fechar (Esc)" type="button" class="mfp-close x-button">x</button>\n\
         \n\
         <div class="col-lg-9">\n\
         <h3>' + title + '</h3>\n\
@@ -1065,6 +1079,8 @@ function closeOnLoadPopupAndSetConvertedFrom(convertedFrom) {
         <table>\n\
         ' + lightboxListHtmlEntry + '\n\
         </table>\n\
+        <a target="module-' + lightboxId + '" onclick="closePopupAndSetConvertedFrom(\'exit-details-' + lightboxId + '\', \'' + lightboxId + '\');" class="event-cta-module-' + lightboxId + ' btn-solid-lg page-scroll" href="#leads">GARANTIR MINHA VAGA</a>\n\
+        <p class="blue"><b>&emsp;&emsp;* 40% OFF até dia 04/04!</b></p>\n\
         </div>\n\
         \n\
         <div class="col-lg-3 basic-1">\n\
