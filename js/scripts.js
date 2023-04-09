@@ -67,7 +67,7 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
         startLightboxAnimation();
         startImageSlider();
         startCardSlider();
-        startCountdown("04/05/2023"); // Format: mm/dd/yyyy
+        startCountdownToTime(new Date().getTime() + 1000 * 60 * 15) // 15 minutes from now
         hidePreloader();
 
         // Get Geolocation
@@ -220,7 +220,7 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
     /***************************************************************************************************************************************************/
     /* Start Countdown */
     /***************************************************************************************************************************************************/
-    function startCountdown(targetDate) {
+    function startCountdownToDate(targetDate) { // Target Date Format: mm/dd/yyyy
         const second = 1000;
         const minute = second * 60;
         const hour = minute * 60;
@@ -240,6 +240,37 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
             // Date is Reached
             if (distance < 0) {
                 clearInterval(x);
+                document.getElementById("countdown-days").innerText = 0,
+                document.getElementById("countdown-hours").innerText = 0,
+                document.getElementById("countdown-minutes").innerText = 0,
+                document.getElementById("countdown-seconds").innerText = 0;
+            }
+
+        }, 0)
+    }
+
+    function startCountdownToTime(targetTime) { // Target Time Format: new Date().getTime() + 1000(1milisecond) * 1-60(seconds) * 1-60(minutes) * 1-24(hours)
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetTime - now;
+
+            document.getElementById("countdown-days").innerText = Math.floor(distance / (day)),
+            document.getElementById("countdown-hours").innerText = Math.floor((distance % (day)) / (hour)),
+            document.getElementById("countdown-minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+            document.getElementById("countdown-seconds").innerText = Math.floor((distance % (minute)) / second);
+
+            // Date is Reached
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown-days").innerText = 0,
+                document.getElementById("countdown-hours").innerText = 0,
+                document.getElementById("countdown-minutes").innerText = 0,
+                document.getElementById("countdown-seconds").innerText = 0;
             }
 
         }, 0)
@@ -300,12 +331,12 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
     function headerVideoSetup() {
         const headerVideos = document.getElementsByClassName("header-youtube-player")
         for (let i = 0; i < headerVideos.length; i++) {
-            headerVideos[i].src = 'https://www.youtube.com/embed/mvpdx4B89XU'
+            headerVideos[i].src = 'https://www.youtube.com/embed/Ec5bqZ0FP1Q'
                 + '?autoplay=1' // Auto Play
                 + '&controls=1' // YouTube Controls
                 + '&rel=0'      // Related Videos
                 + '&loop=1'     // Loop
-                + '&fs=0'       // Full Screen
+                + '&fs=1'       // Full Screen
         }
     }
 
@@ -1080,7 +1111,7 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
         ' + lightboxListHtmlEntry + '\n\
         </table>\n\
         <a target="module-' + lightboxId + '" onclick="closePopupAndSetConvertedFrom(\'exit-details-' + lightboxId + '\', \'' + lightboxId + '\');" class="event-cta-module-' + lightboxId + ' btn-solid-lg page-scroll" href="#leads">GARANTIR MINHA VAGA</a>\n\
-        <p class="blue"><b>&emsp;&emsp;* 40% OFF até dia 04/04!</b></p>\n\
+        <p class="blue"><b>&emsp;* Últimas vagas disponíveis!</b></p>\n\
         </div>\n\
         \n\
         <div class="col-lg-3 basic-1">\n\
