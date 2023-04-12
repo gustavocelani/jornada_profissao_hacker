@@ -9,7 +9,7 @@ const globalVersion = 0.8;
 /***************************************************************************************************************************************************/
 ['iPhone', 'iPad', 'iPod'].forEach(iosDevice => {
     if (navigator.userAgent.includes(iosDevice)) {
-        ['#header', '#header-module', '#gustavo', '#treinamento', '#leads', "#product"].forEach(parallaxSection => {
+        ['#header', '#gustavo', '#treinamento', '#leads', "#product"].forEach(parallaxSection => {
             $(parallaxSection).addClass('ios-device');
         })
     }
@@ -1110,7 +1110,7 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
         <table>\n\
         ' + lightboxListHtmlEntry + '\n\
         </table>\n\
-        <a target="module-' + lightboxId + '" onclick="closePopupAndSetConvertedFrom(\'exit-details-' + lightboxId + '\', \'' + lightboxId + '\');" class="event-cta-module-' + lightboxId + ' btn-solid-lg page-scroll" href="#leads">GARANTIR MINHA VAGA</a>\n\
+        <a target="module-' + lightboxId + '" onclick="closePopupAndSetConvertedFrom(\'exit-details-' + lightboxId + '\', \'' + lightboxId + '\');" class="event-cta-module-' + lightboxId + ' btn-solid-lg page-scroll" href="#product">GARANTIR MINHA VAGA</a>\n\
         <p class="blue"><b>&emsp;* Últimas vagas disponíveis!</b></p>\n\
         </div>\n\
         \n\
