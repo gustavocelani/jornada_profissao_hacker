@@ -552,6 +552,12 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
                 "img": "erik.jpeg",
                 "msg": "Trabalhei diretamente com o Gustavo e recomendo o treinamento não só para você que quer ingressar na área de cybersecurity mas também, para você que é dev ou devops e quer aprimorar seus conhecimentos e aplicar as melhores práticas de cybersecurity no seu dia a dia de trabalho."
             },
+            {
+                "author": "Marcio Santos",
+                "position": "PenTester",
+                "img": "marcio-santos.jpg",
+                "msg": "Tive a oportunidade de participar deste excelente treinamento ministrado pelo Gustavo Celani! Abordando todas as fases do Pentest de forma prática! Let's Hack!!!"
+            },
         ]
 
         var testimonialHtmlEntry = '';
