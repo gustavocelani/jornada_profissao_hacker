@@ -16,14 +16,6 @@ const globalVersion = 0.8;
 })
 
 /***************************************************************************************************************************************************/
-/* Converted From (Call to Action Metric) Control */
-/***************************************************************************************************************************************************/
-var convertedFrom = 'WebSite'
-function setConvertedFrom(callToAction) {
-    convertedFrom = callToAction
-}
-
-/***************************************************************************************************************************************************/
 /* Pop-Up */
 /***************************************************************************************************************************************************/
 function spawnOnLoadPopup(afterSeconds) {
@@ -31,9 +23,8 @@ function spawnOnLoadPopup(afterSeconds) {
         document.getElementById('onload-popup-button').click();
     });
 }
-function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
+function closePopup(closeButtonId) {
     document.getElementById(closeButtonId).click();
-    setConvertedFrom(convertedFrom);
 }
 
 /***************************************************************************************************************************************************/
@@ -402,7 +393,7 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
     });
 
     /***************************************************************************************************************************************************/
-    /* Contact Form */
+    /* Leads Form */
     /***************************************************************************************************************************************************/
     function setLeadFormSubmitButtonStatus(enabled) {
         if (enabled) {
@@ -412,15 +403,15 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
         }
     }
 
-    document.querySelector("#lead-consent-email").onchange = (event) => {
+    document.querySelector("#lead-consent").onchange = (event) => {
         setLeadFormSubmitButtonStatus(event.target.checked);
     }
 
     $("#leadForm").validator().on("submit", function(event) {
-        if (!$("#lead-consent-email").is(":checked")) {
+        if (!$("#lead-consent").is(":checked")) {
             leadFormError("Por favor, conceda a permissão para receber informações via email.");
 
-        } else if (event.isDefaultPrevented() || $("#lead-area").val()=='None' || $("#lead-origin").val()=='None') {
+        } else if (event.isDefaultPrevented() || $("#lead-area").val()=='None') {
             leadFormError("Por favor, preencha todos os campos. É super rápido!");
 
         } else {
@@ -438,16 +429,12 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
             crossDomain: true,
             url: "https://script.google.com/macros/s/AKfycbzThA1wBsk6K_eZKsRDgM-ArKemeQ7MT98SWGV1PxYQiHw0PJx0GMPVL0SmoMxLFAVF/exec",            
             data: {
-                "latitude":           latitude,
-                "longitude":          longitude,
-                "converted from":     convertedFrom,
-                "userAgent":          navigator.userAgent,
-                "name":               $("#lead-name").val(),
-                "email":              $("#lead-email").val(),
-                "area":               $("#lead-area").val(),
-                "origin":             $("#lead-origin").val(),
-                "consent email":      ($("#lead-consent-email").is(":checked") ? 1 : 0),
-                "consent newsletter": ($("#lead-consent-newsletter").is(":checked") ? 1 : 0)
+                "userAgent":  navigator.userAgent,
+                "name":       $("#lead-name").val(),
+                "email":      $("#lead-email").val(),
+                "tel":        $("#lead-tel").val(),
+                "area":       $("#lead-area").val(),
+                "consent":    ($("#lead-consent").is(":checked") ? 1 : 0),
             },
 
             success: function(apiResponse) {
@@ -476,8 +463,8 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
         leadFormMessage(
             'success',
             '<i class="fas fa-ticket-alt"></i> ' + apiResponse['cupom'] +
-            '<br><p>Válido até ' + apiResponse['expire_at'] + '</p>' + 
-            '<a id="cupom-button" target="_blank" onclick="setConvertedFrom(\'Cupom\')" class="event-cta-cupom text-center green" href="' + apiResponse['url'] + '"><p class="green" >ADQUIRIR O TREINAMENTO AGORA!</p></a>'
+            '<br><p>Válido até ' + apiResponse['expire_at'] + '</p>' +
+            '<a id="cupom-button" target="_blank" class="event-cta-cupom text-center green" href="' + apiResponse['url'] + '"><p class="green"><b>ADQUIRIR O TREINAMENTO AGORA!</b></p></a>'
         )
 
         // Reset Form
@@ -1116,7 +1103,7 @@ function closePopupAndSetConvertedFrom(closeButtonId, convertedFrom) {
         <table>\n\
         ' + lightboxListHtmlEntry + '\n\
         </table>\n\
-        <a target="module-' + lightboxId + '" onclick="closePopupAndSetConvertedFrom(\'exit-details-' + lightboxId + '\', \'' + lightboxId + '\');" class="event-cta-module-' + lightboxId + ' btn-solid-lg page-scroll" href="#product">GARANTIR MINHA VAGA</a>\n\
+        <a target="module-' + lightboxId + '" onclick="closePopup(\'exit-details-' + lightboxId + '\');" class="event-cta-module-' + lightboxId + ' btn-solid-lg page-scroll" href="#product">GARANTIR MINHA VAGA</a>\n\
         <p class="blue"><b>&emsp;* Últimas vagas disponíveis!</b></p>\n\
         </div>\n\
         \n\
