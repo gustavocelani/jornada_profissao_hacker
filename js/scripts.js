@@ -464,16 +464,13 @@ function closePopup(closeButtonId) {
             'success',
             '<i class="fas fa-ticket-alt"></i> ' + apiResponse['cupom'] +
             '<br><p>Válido até ' + apiResponse['expire_at'] + '</p>' +
-            '<a id="cupom-button" target="_blank" class="event-cta-cupom text-center green" href="' + apiResponse['url'] + '"><p class="green"><b>ADQUIRIR O TREINAMENTO AGORA!</b></p></a>'
+            '<a id="cupom-button" target="cupom" class="event-cta text-center green" href="' + apiResponse['url'] + '"><p class="green"><b>ADQUIRIR O TREINAMENTO AGORA!</b></p></a>'
         )
 
         // Reset Form
         $("#leadForm")[0].reset();
         $("input").removeClass('notEmpty');
         $("textarea").removeClass('notEmpty');
-
-        // LinkedIn Tracker
-        window.lintrk('track', { conversion_id: 12976897 });
     }
 
     function leadFormError(errorMessage) {
@@ -1035,7 +1032,7 @@ function closePopup(closeButtonId) {
             \n\
             <!-- Image -->\n\
             <div class="offset-lg-3 col-lg-2 col-sm-2 module-icon">\n\
-            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' popup-with-move-anim" href="#details-' + lightboxId + '">\n\
+            <a target="' + lightboxId + '" class="event-details popup-with-move-anim" href="#details-' + lightboxId + '">\n\
             <img class="img-fluid icon" src="images/icons/' + iconFileName + '">\n\
             </a>\n\
             </div>\n\
@@ -1048,7 +1045,7 @@ function closePopup(closeButtonId) {
             <!-- Text -->\n\
             <div class="col-lg-5 col-sm-10 module-title">\n\
             <h3>' + title + '</h3>\n\
-            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">CONTEÚDO</a>\n\
+            <a target="' + lightboxId + '" class="event-details btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">CONTEÚDO</a>\n\
             </div>\n\
             </div> <!-- end of Visual Content -->\n\
             ';
@@ -1061,7 +1058,7 @@ function closePopup(closeButtonId) {
             <!-- Text -->\n\
             <div class="col-lg-5 col-sm-10 text-right module-title">\n\
             <h3>' + title + '</h3>\n\
-            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">CONTEÚDO</a>\n\
+            <a target="' + lightboxId + '" class="event-details btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">CONTEÚDO</a>\n\
             </div>\n\
             \n\
             <!-- Divider -->\n\
@@ -1071,7 +1068,7 @@ function closePopup(closeButtonId) {
             \n\
             <!-- Image -->\n\
             <div class="col-lg-2 col-sm-2 module-icon">\n\
-            <a target="' + lightboxId + '" class="event-details-' + lightboxId + ' popup-with-move-anim" href="#details-' + lightboxId + '">\n\
+            <a target="' + lightboxId + '" class="event-details popup-with-move-anim" href="#details-' + lightboxId + '">\n\
             <img class="img-fluid" src="images/icons/' + iconFileName + '">\n\
             </a>\n\
             </div>\n\
@@ -1103,7 +1100,7 @@ function closePopup(closeButtonId) {
         <table>\n\
         ' + lightboxListHtmlEntry + '\n\
         </table>\n\
-        <a target="module-' + lightboxId + '" onclick="closePopup(\'exit-details-' + lightboxId + '\');" class="event-cta-module-' + lightboxId + ' btn-solid-lg page-scroll" href="#product">GARANTIR MINHA VAGA</a>\n\
+        <a target="module-' + lightboxId + '" onclick="closePopup(\'exit-details-' + lightboxId + '\');" class="event-cta btn-solid-lg page-scroll" href="#product">GARANTIR MINHA VAGA</a>\n\
         <p class="blue"><b>&emsp;* Últimas vagas disponíveis!</b></p>\n\
         </div>\n\
         \n\
