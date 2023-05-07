@@ -13,7 +13,7 @@ const globalVersion = 0.8;
             $(parallaxSection).addClass('ios-device');
         })
     }
-})
+});
 
 /***************************************************************************************************************************************************/
 /* Current Page by Path */
@@ -23,7 +23,7 @@ var currentPage = '/index';
     if (window.location.href.includes(page)) {
         currentPage = page;
     }
-})
+});
 
 /***************************************************************************************************************************************************/
 /* Pop-Up */
@@ -475,7 +475,7 @@ function closePopup(closeButtonId) {
         $("#leadForm")[0].reset();
         $("input").removeClass('notEmpty');
         $("textarea").removeClass('notEmpty');
-        setLeadFormSubmitButtonStatus(true)
+        setLeadFormSubmitButtonStatus(true);
     }
 
     function leadFormSuccessSorteio(apiResponse) {
@@ -503,12 +503,9 @@ function closePopup(closeButtonId) {
         $("select").prop('disabled', true);
     }
 
-    document.querySelector("#form-lightbox").addEventListener("close", (event) => {
-        console.log(event);
-    });
-
     function leadFormError(errorMessage) {
         leadFormMessage('error', errorMessage == null || errorMessage == '' ? "Tente novamente mais tarde." : errorMessage);
+        setLeadFormSubmitButtonStatus(true);
     }
 
     function leadFormMessage(type, message) {
