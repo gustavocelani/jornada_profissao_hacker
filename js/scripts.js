@@ -16,6 +16,16 @@ const globalVersion = 0.8;
 })
 
 /***************************************************************************************************************************************************/
+/* Current Page by Path */
+/***************************************************************************************************************************************************/
+var currentPage = null;
+["/index", "/sorteio"].forEach(page => {
+    if (window.location.href.includes(page)) {
+        currentPage = page;
+    }
+})
+
+/***************************************************************************************************************************************************/
 /* Pop-Up */
 /***************************************************************************************************************************************************/
 function spawnOnLoadPopup(afterSeconds) {
@@ -45,27 +55,28 @@ function closePopup(closeButtonId) {
         }
 
         // Set Copyright Version Text
-        $('#copyright-version-text').html('Developed and Maintained By <span class="blue">Gustavo Celani</span> - v' + globalVersion)
+        $('#copyright-version-text').html('Developed and Maintained By <span class="blue">Gustavo Celani</span> - v' + globalVersion);
 
-        // Dynamically Populated Content
-        populateTestimonials();
-        populateJornadaSlider();
-        populateCoursesTimelineContent();
-        populateModulesTimelineContent();
-        headerVideoSetup();
+        // Index.html Dynamic Content
+        if (["/index"].includes(currentPage)) {
+            populateTestimonials();
+            populateModulesTimelineContent();
+            youtubeVideoSetup("header-youtube-player", "6oRoklr0Fd8");
+            startCountdownToTime(new Date().getTime() + 1000 * 60 * 15); // 15 minutes from now
+        }
 
         // Starting Animations and Interactions
         startLightboxAnimation();
         startImageSlider();
         startCardSlider();
-        startCountdownToTime(new Date().getTime() + 1000 * 60 * 15) // 15 minutes from now
+        
+        // Hide Preloader
         hidePreloader();
 
-        // Get Geolocation
-        // getGeolocation();
-
         // On Load Popup
-        spawnOnLoadPopup(5);
+        if (["/index"].includes(currentPage)) {
+            spawnOnLoadPopup(5);
+        }
     });
 
     /***************************************************************************************************************************************************/
@@ -287,42 +298,12 @@ function closePopup(closeButtonId) {
     });
 
     /***************************************************************************************************************************************************/
-    /* Video Lightbox - Magnific Popup */
+    /* YouTube Videos */
     /***************************************************************************************************************************************************/
-    $('.popup-youtube, .popup-vimeo').magnificPopup({
-        disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-        fixedContentPos: false,
-        iframe: {
-            patterns: {
-                youtube: {
-                    index: 'youtube.com/',
-                    id: function(url) {
-                        var m = url.match(/[\\?\\&]v=([^\\?\\&]+)/);
-                        if ( !m || !m[1] ) return null;
-                        return m[1];
-                    },
-                    src: 'https://www.youtube.com/embed/%id%?autoplay=1'
-                },
-                vimeo: {
-                    index: 'vimeo.com/',
-                    id: function(url) {
-                        var m = url.match(/(https?:\/\/)?(www.)?(player.)?vimeo.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/);
-                        if ( !m || !m[5] ) return null;
-                        return m[5];
-                    },
-                    src: 'https://player.vimeo.com/video/%id%?autoplay=1'
-                }
-            }
-        }
-    });
-    function headerVideoSetup() {
-        const headerVideos = document.getElementsByClassName("header-youtube-player")
-        for (let i = 0; i < headerVideos.length; i++) {
-            headerVideos[i].src = 'https://www.youtube.com/embed/6oRoklr0Fd8'
+    function youtubeVideoSetup(elemnetId, videoId) {
+        const youtubeVideos = document.getElementsByClassName(elemnetId)
+        for (let i = 0; i < youtubeVideos.length; i++) {
+            youtubeVideos[i].src = 'https://www.youtube.com/embed/' + videoId
                 + '?autoplay=1' // Auto Play
                 + '&controls=1' // YouTube Controls
                 + '&rel=0'      // Related Videos
@@ -424,11 +405,24 @@ function closePopup(closeButtonId) {
         setLeadFormSubmitButtonStatus(false);
         leadFormMessage('info', "Enviando...");
 
+        var leadOrigin = null;
+        switch (currentPage) {
+            case "/index":
+                leadOrigin = "cupom";
+                break;
+            case "/sorteio":
+                leadOrigin = "sorteio";
+                break;
+            default:
+                leadOrigin = currentPage;
+        }        
+
         $.ajax({
             type: "POST",
             crossDomain: true,
             url: "https://script.google.com/macros/s/AKfycbzThA1wBsk6K_eZKsRDgM-ArKemeQ7MT98SWGV1PxYQiHw0PJx0GMPVL0SmoMxLFAVF/exec",            
             data: {
+                "origin":     leadOrigin,
                 "userAgent":  navigator.userAgent,
                 "name":       $("#lead-name").val(),
                 "email":      $("#lead-email").val(),
@@ -438,8 +432,7 @@ function closePopup(closeButtonId) {
             },
 
             success: function(apiResponse) {
-                apiResponse['result'] == 'success' ? leadFormSuccess(apiResponse) : leadFormError(apiResponse['message']);
-                setLeadFormSubmitButtonStatus(true)
+                apiResponse['result'] == 'success' ? leadFormSuccess(leadOrigin, apiResponse) : leadFormError(apiResponse['message']);
             },
 
             error: function(request, status, error) {
@@ -449,17 +442,28 @@ function closePopup(closeButtonId) {
         });
     }
 
-    function leadFormSuccess(apiResponse) {
-        // Building PopUp
+    function leadFormSuccess(leadOrigin, apiResponse) {
+        switch(leadOrigin) {
+            case "cupom":
+                leadFormSuccessCupom(apiResponse);
+                break;
+            case "sorteio":
+                leadFormSuccessSorteio(apiResponse);
+                break;
+        }
+    }
+
+    function leadFormSuccessCupom(apiResponse) {
+        // Building Cupom PopUp
         document.getElementById("cupom").innerText = apiResponse['cupom']
         document.getElementById("cupom-expire").innerText = apiResponse['expire_at']
         document.getElementById("cupom-button").setAttribute('href', apiResponse['url'])
 
-        // Spawn PopUp
+        // Spawn Cupom PopUp
         document.getElementById("leadFormSubmitResult").setAttribute('hidden', '')
         $("#spawn-form-lightbox").click();
 
-        // Success Message
+        // Success Cupom Message
         leadFormMessage(
             'success',
             '<i class="fas fa-ticket-alt"></i> ' + apiResponse['cupom'] +
@@ -471,7 +475,37 @@ function closePopup(closeButtonId) {
         $("#leadForm")[0].reset();
         $("input").removeClass('notEmpty');
         $("textarea").removeClass('notEmpty');
+        setLeadFormSubmitButtonStatus(true)
     }
+
+    function leadFormSuccessSorteio(apiResponse) {
+        // Building Sorteio PopUp
+        document.getElementById("sorteio-row").innerText = apiResponse['row']
+
+        // Spawn Cupom PopUp
+        document.getElementById("leadFormSubmitResult").setAttribute('hidden', '')
+        $("#spawn-form-lightbox").click();
+
+        // Success Cupom Message
+        leadFormMessage(
+            'success',
+            '<i class="fas fa-ticket-alt"></i> Número da Sorte: ' + apiResponse['row'] +
+            '<br><p>O sorteio acontecerá em breve!</p>' +
+            '<p>Enquanto isso...</p>' +
+            '<a class="btn-solid-lg text-center" href="index.html">SAIBA MAIS SOBRE A JORNADA</a>'
+        )
+
+        // Reset Form (Unless Submit Button)
+        $("#leadForm")[0].reset();
+        $("input").removeClass('notEmpty');
+        $("input").prop('disabled', true);
+        $("select").removeClass('notEmpty');
+        $("select").prop('disabled', true);
+    }
+
+    document.querySelector("#form-lightbox").addEventListener("close", (event) => {
+        console.log(event);
+    });
 
     function leadFormError(errorMessage) {
         leadFormMessage('error', errorMessage == null || errorMessage == '' ? "Tente novamente mais tarde." : errorMessage);
@@ -560,184 +594,6 @@ function closePopup(closeButtonId) {
         });
 
         $('#testimonials-slider').html(testimonialHtmlEntry);
-    }
-
-    /***************************************************************************************************************************************************/
-    /* Dynamically Populate Jornada Slider */
-    /***************************************************************************************************************************************************/
-    function populateJornadaSlider() {
-        var modules = [
-            {
-                'id': 'estrategias-e-carreiras',
-                'available': true,
-                'text': '<span class="blue">PRÉ-LANÇAMENTO</span>'
-            },
-            {
-                'id': 'sistemas-e-redes-computacionais',
-                'available': false,
-                'text': 'Inscrições Fechadas'
-            },
-            {
-                'id': 'desenvolvimento-de-software-seguro',
-                'available': false,
-                'text': 'Inscrições Fechadas'
-            },
-            {
-                'id': 'seguranca-em-aplicacoes',
-                'available': false,
-                'text': 'Inscrições Fechadas'
-            },
-            {
-                'id': 'hands-on-hacking',
-                'available': false,
-                'text': 'Inscrições Fechadas'
-            }
-        ]
-
-        var modulesHtmlEntry = '';
-        modules.forEach(module => {
-            var imgExtraClasses = ''
-            var aExtraClasses = ''
-
-            if (!module['available']) {
-                imgExtraClasses = 'bw-img'
-                aExtraClasses = 'disabled-a'
-            }
-
-            modulesHtmlEntry += '\
-            <!-- Module -->\n\
-            <div class="swiper-slide shine-figure">\n\
-                <a class="' + aExtraClasses + ' no-underline event-details-' + module['id'] + ' "href="' + module['id'] + '.html">\n\
-                    <figure><img class="' + imgExtraClasses + ' img-fluid" src="images/capas-cursos/' + module['id'] + '.jpg"></figure>\n\
-                    <p>' + module['text'] + '</p>\n\
-                </a>\n\
-            </div>\n\n\
-            ';
-        });
-
-        $('#modules-slider').html(modulesHtmlEntry);
-    }
-
-    /***************************************************************************************************************************************************/
-    /* Dynamically Populate Courses Timeline Content */
-    /***************************************************************************************************************************************************/
-    function populateCoursesTimelineContent() {
-
-        // Estratégias & Carreiras
-        $('#content-jornada-estrategias-carreiras').html(buildCourseTimelineContent(
-            'left',
-            '<span class="blue">[PRÉ-LANÇAMENTO]</span><br>Estratégias & Carreiras',
-            'talent-search.png',
-            'estrategias-e-carreiras',
-            true
-        ));
-
-        // Sistemas & Redes Computacionais
-        $('#content-jornada-sistemas-redes').html(buildCourseTimelineContent(
-            'right',
-            'Sistemas & Redes<br>Computacionais',
-            'computer.png',
-            'sistemas-e-redes-computacionais',
-            false
-        ));
-
-        // Desenvolvimento de Software Seguro
-        $('#content-jornada-dev-seguro').html(buildCourseTimelineContent(
-            'left',
-            'Desenvolvimento de<br>Software Seguro',
-            'principle.png',
-            'desenvolvimento-de-software-seguro',
-            false
-        ));
-
-        // Segurança em Aplicações
-        $('#content-jornada-appsec').html(buildCourseTimelineContent(
-            'right',
-            'Segurança em<br>Aplicações',
-            'app-development.png',
-            'segurança-em-aplicações',
-            false
-        ));
-
-        // Ferramentas & Hands On Hacking
-        $('#content-jornada-hacking').html(buildCourseTimelineContent(
-            'left',
-            'Hands On<br>Hacking',
-            'hacker.png',
-            'hands-on-hacking',
-            false
-        ));
-    }
-
-    function buildCourseTimelineContent(orientation, title, iconFileName, id, available) {
-        var visualContentHtmlEntry = ''
-        var imgExtraClasses = ''
-        var btnExtraClasses = ''
-        var aExtraClasses = ''
-        var btnText = 'DETALHES DO TREINAMENTO'
-
-        if (!available) {
-            imgExtraClasses = 'bw-img'
-            btnExtraClasses = 'disabled-button'
-            aExtraClasses = 'disabled-a'
-            btnText = 'INSCRIÇÕES FECHADAS'
-        }
-
-        if (orientation == 'left') {
-            visualContentHtmlEntry = '\
-            <!-- Visual Content -->\n\
-            <div class="row module-row">\n\
-            \n\
-            <!-- Image -->\n\
-            <div class="offset-lg-3 col-lg-2 col-sm-2 module-icon">\n\
-            <a target="' + id + '" class="event-details-' + id + ' ' + aExtraClasses + '" href="' + id + '.html">\n\
-            <img class="img-fluid ' + imgExtraClasses + '" src="images/icons/' + iconFileName + '">\n\
-            </a>\n\
-            </div>\n\
-            \n\
-            <!-- Divider -->\n\
-            <div class="divider col-lg-2 col-sm-2 text-center">\n\
-            <img class="img-fluid" style="height: 15rem;" src="images/components/timeline.png">\n\
-            </div>\n\
-            \n\
-            <!-- Text -->\n\
-            <div class="col-lg-5 col-sm-10 module-title">\n\
-            <h3>' + title + '</h3>\n\
-            <a target="' + id + '" class="event-details-' + id + ' btn-solid-reg ' + btnExtraClasses + '" href="' + id + '.html">' + btnText + '</a>\n\
-            </div>\n\
-            </div> <!-- end of Visual Content -->\n\
-            ';
-
-        } else if (orientation == 'right') {
-            visualContentHtmlEntry = '\
-            <!-- Visual Content -->\n\
-            <div class="row module-row">\n\
-            \n\
-            <!-- Text -->\n\
-            <div class="col-lg-5 col-sm-10 text-right module-title">\n\
-            <h3>' + title + '</h3>\n\
-            <a target="' + id + '" class="event-details-' + id + ' btn-solid-reg ' + btnExtraClasses + '" href="' + id + '.html">' + btnText + '</a>\n\
-            </div>\n\
-            \n\
-            <!-- Divider -->\n\
-            <div class="divider col-lg-2 col-sm-2 text-center">\n\
-            <img class="img-fluid" style="height: 15rem;" src="images/components/timeline.png">\n\
-            </div>\n\
-            \n\
-            <!-- Image -->\n\
-            <div class="col-lg-2 col-sm-2 module-icon">\n\
-            <a target="' + id + '" class="event-details-' + id + ' ' + aExtraClasses + '" href="' + id + '.html">\n\
-            <img class="img-fluid ' + imgExtraClasses + '" src="images/icons/' + iconFileName + '">\n\
-            </a>\n\
-            </div>\n\
-            </div> <!-- end of Visual Content -->\n\
-            ';
-
-        } else {
-            return null;
-        }
-
-        return visualContentHtmlEntry;
     }
 
     /***************************************************************************************************************************************************/

@@ -879,7 +879,7 @@ input[type='checkbox'] {
 /* Header */
 /***************************************************************************************************************************************************/
 .header {
-	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), url('../images/backgrounds/background-rainbow.jpg') center center no-repeat;
+	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/backgrounds/background.png') center center no-repeat;
 	background-size: cover;
 
 	/* Create the parallax scrolling effect */
