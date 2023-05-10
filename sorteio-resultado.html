@@ -99,10 +99,7 @@
         <div class="collapse navbar-collapse" id="navbarsDefault">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="event-navbar nav-link page-scroll" href="#header">INÍCIO</a>
-                </li>
-                <li class="nav-item">
-                    <a class="event-navbar nav-link page-scroll border" href="#leads">SORTEIO</a>
+                    <a class="event-navbar nav-link page-scroll border" href="#header">RESULTADO</a>
                 </li>
             </ul>
 
@@ -168,154 +165,19 @@
                         </div>
                     </div>
 
-                    <!-- Button -->
-                    <div class="col-lg-12 text-center" style="margin-top: 3rem;">
-                        <a target="sorteio" class="event-cta btn-solid-lg page-scroll" href="#leads">INSCREVER-SE AGORA</a>
-                        <p class="p-large">Concorra a um <b class="blue">CUPOM EXCLUSIVO DE 99% OFF</b></p>
+                    <!-- Result -->
+                    <div class="col-lg-12 text-center" style="margin-top: 5rem;">
+                        <hr>
+                        <h1 class="blue">PARABÉNS!</h1>
+                        <hr>
+                        <h1 id="sorteio-resultado-name">SORTEANDO...</h1>
+                        <h4>NÚMERO DA SORTE [ <b id="sorteio-resultado-row" class="blue">?</b> ]</h4>
                     </div>
                 </div> <!-- end of Banner row -->
 
             </div> <!-- end of container -->
         </div> <!-- end of header-content -->
     </header> <!-- end of header -->
-
-
-    <!-------------------------------------------------------------------------------------------------------------------------------------------------->
-    <!-- Redes Sociais (Contacts) -->
-    <!-------------------------------------------------------------------------------------------------------------------------------------------------->
-    <div id="contacts" class="basic-2" style="padding-top: 4rem;">
-        <div class="container">
-
-            <!-- Buttons -->
-            <div class="col-lg-12 text-center">
-                <h3 style="margin-bottom: 0;">MINHAS <span class="blue">REDES SOCIAIS</span></h3>
-                <p class="p-large">Vamos manter contato!</p>
-                <hr>
-                <a id="linkedin" class="btn-solid-lg text-center event-socials" target="_blank" href="https://www.linkedin.com/in/gustavocelani" style="margin: 0.5rem;"><span class="fab fa-linkedin"></span></a>
-                <a id="whatsapp" class="btn-solid-lg text-center event-socials" href="https://gustavocelani.com/whatsapp" target="_blank" style="margin: 0.5rem;"><i class="fab fa-whatsapp"></i></a>
-                <a id="instagram" class="btn-solid-lg text-center event-socials" href="https://www.instagram.com/jornadaprofissaohacker/" target="_blank" style="margin: 0.5rem;"><i class="fab fa-instagram"></i></a>
-                <a id="facebook" class="btn-solid-lg text-center event-socials" href="https://www.facebook.com/profile.php?id=100090641258762" target="_blank" style="margin: 0.5rem;"><i class="fab fa-facebook"></i></a>
-                <a id="contato" class="btn-solid-lg text-center event-mail" href="mailto:contato@gustavocelani.com" style="margin: 0.5rem;"><i class="fas fa-envelope"></i></a>
-            </div>
-
-        </div> <!-- end of container -->
-    </div> <!-- end of Content -->
-
-
-    <!-------------------------------------------------------------------------------------------------------------------------------------------------->
-    <!-- Leads Form -->
-    <!-------------------------------------------------------------------------------------------------------------------------------------------------->
-    <div id="leads" class="slider-2 leads">
-        <div class="container">
-
-            <!-- Title -->
-            <div class="row">
-                <div class="col-lg-12 text-center" style="margin-bottom: 2rem;">
-                    <h2><span class="blue">INSCREVA-SE</span> AQUI!</h2>
-                    <hr>
-                    <p class="p-large text-center">
-                        Se inscreva agora para o <b class="blue">SORTEIO!</b><br>
-                        Concorra ao <b class="blue">CUPOM EXCLUSIVO DE 99% OFF!</b>
-                    </p>
-                </div>
-            </div> <!-- end of Title -->
-
-            <!-- Lead Form -->
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <form id="leadForm" data-focus="false">
-
-                        <!-- Name -->
-                        <div class="form-group">
-                            <input type="text" class="form-control-input" id="lead-name" required>
-                            <label class="label-control" for="lead-name">Nome</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="form-group">
-                            <input type="email" class="form-control-input" id="lead-email" required>
-                            <label class="label-control" for="lead-email">Email</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-
-                        <!-- WhatsApp -->
-                        <div class="form-group">
-                            <input type="tel" class="form-control-input" id="lead-tel" required>
-                            <label class="label-control" for="lead-tel">WhatsApp <span class="blue">[DDD+Número: 11996662069]</span></label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-
-                        <!-- Work -->
-                        <div class="form-group">
-                            <select class="form-control-select" id="lead-area" required>
-                                <option class="default-option" value="None" disabled selected hidden>Selecione sua ocupação atual</option>
-                                <option value="Estudante de Cybersecurity">Estudante de Cybersecurity</option>
-                                <option value="Estudante de Cybersecurity (Defesa)">Estudante de Cybersecurity (Defesa)</option>
-                                <option value="Estudante de Cybersecurity (Ataque)">Estudante de Cybersecurity (Ataque)</option>
-                                <option value="Estudante de Cybersecurity (AppSec)">Estudante de Cybersecurity (AppSec)</option>
-                                <option value="Estudante de Cybersecurity (Forense)">Estudante de Cybersecurity (Forense)</option>
-                                <option value="Estudante de Cybersecurity (Redes)">Estudante de Cybersecurity (Redes)</option>
-                                <option value="Estudante de TI">Estudante de TI</option>
-                                <option value="Red Team">Profissional de Red Team</option>
-                                <option value="Blue Team">Profissional de Blue Team</option>
-                                <option value="Application Security">Profissional de Segurança em Aplicações</option>
-                                <option value="Redes">Profissional de Redes</option>
-                                <option value="Forense">Profissional Forense</option>
-                                <option value="Privacidade">Profissional de Privacidade</option>
-                                <option value="Desenvolvedor de Software">Desenvolvedor de Software</option>
-                                <option value="Arquiteto de Software">Arquiteto de Software</option>
-                                <option value="SysAdmin">Administrador de Sistemas (SysAdmin)</option>
-                                <option value="Gestor">Gestor</option>
-                                <option value="Entusiasta">Entusiasta</option>
-                                <option value="Outro">Outro</option>
-                            </select>
-                            <div class="help-block with-errors"></div>
-                        </div>
-
-                        <!-- Compliance -->
-                        <div class="form-group text-left">
-                            <label class="p-small"><input type="checkbox" id="lead-consent" checked required>Concordo em receber comunicações pontuais sobre os treinamentos.</label>
-                        </div>
-
-                        <!-- Submit -->
-                        <div class="form-group">
-                            <button id="leadFormSubmitButton" type="submit" class="form-control-submit-button">INSCREVER-SE AGORA</button>
-                        </div>
-
-                        <!-- Result Text -->
-                        <div class="form-message">
-                            <div id="leadFormSubmitResult" class="h3 text-center"></div>
-                        </div>
-                    </form>
-                </div>
-            </div> <!-- end of Lead Form -->
-
-            <!-- Form Lightbox -->
-            <div id="form-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
-                <div class="row">
-
-                    <!-- Close Button -->
-                    <button title="Fechar (Esc)" type="button" class="mfp-close x-button">x</button>
-
-                    <div class="col-lg-9">
-                        <h2 class="blue">PARABÉNS!</h2>
-                        <p class="p-large">Você está concorrendo ao <b class="blue">CUPOM ÚNICO DE 99% OFF</b>!</p>
-                        <hr>
-                        <h3>Seu número da sorte é <b id="sorteio-row" class="blue"></b></h3>
-                        <p class="p-large">O <b class="blue">SORTEIO</b> vai começar em breve!<br>Enquanto isso...</p>
-                        <a href="index.html" class="btn-solid-lg text-center">SAIBA MAIS SOBRE A JORNADA</a>
-                    </div>
-
-                    <div class="col-lg-3 basic-1">
-                        <img class="img-fluid" style="padding-top: 0;" src="images/icons/discount_ticket.png">
-                    </div>
-                </div> <!-- end of row -->
-            </div> <!-- end of lightbox-basic -->
-            <a id="spawn-form-lightbox" class="btn-solid-reg popup-with-move-anim" href="#form-lightbox" hidden></a>
-
-        </div> <!-- end of container -->
-    </div> <!-- end of Pré Inscrição -->
 
 
     <!-------------------------------------------------------------------------------------------------------------------------------------------------->

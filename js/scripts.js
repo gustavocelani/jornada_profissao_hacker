@@ -19,7 +19,7 @@ const globalVersion = 0.8;
 /* Current Page by Path */
 /***************************************************************************************************************************************************/
 var currentPage = '/index';
-["/index", "/sorteio"].forEach(page => {
+["/index", "/sorteio", "/sorteio-resultado"].forEach(page => {
     if (window.location.href.includes(page)) {
         currentPage = page;
     }
@@ -65,11 +65,16 @@ function closePopup(closeButtonId) {
             startCountdownToTime(new Date().getTime() + 1000 * 60 * 15); // 15 minutes from now
         }
 
+        // /sorteio-resultado Dynamic Content
+        if (["/sorteio-resultado"].includes(currentPage)) {
+            getSorteioResult();
+        }
+
         // Starting Animations and Interactions
         startLightboxAnimation();
         startImageSlider();
         startCardSlider();
-        
+
         // Hide Preloader
         hidePreloader();
 
@@ -384,22 +389,24 @@ function closePopup(closeButtonId) {
         }
     }
 
-    document.querySelector("#lead-consent").onchange = (event) => {
-        setLeadFormSubmitButtonStatus(event.target.checked);
-    }
-
-    $("#leadForm").validator().on("submit", function(event) {
-        if (!$("#lead-consent").is(":checked")) {
-            leadFormError("Por favor, conceda a permissão para receber informações via email.");
-
-        } else if (event.isDefaultPrevented() || $("#lead-area").val()=='None') {
-            leadFormError("Por favor, preencha todos os campos. É super rápido!");
-
-        } else {
-            event.preventDefault();
-            leadFormSubmit();
+    if (["/sorteio", "/index"].includes(currentPage)) {
+        document.querySelector("#lead-consent").onchange = (event) => {
+            setLeadFormSubmitButtonStatus(event.target.checked);
         }
-    });
+
+        $("#leadForm").validator().on("submit", function(event) {
+            if (!$("#lead-consent").is(":checked")) {
+                leadFormError("Por favor, conceda a permissão para receber informações via email.");
+
+            } else if (event.isDefaultPrevented() || $("#lead-area").val()=='None') {
+                leadFormError("Por favor, preencha todos os campos. É super rápido!");
+
+            } else {
+                event.preventDefault();
+                leadFormSubmit();
+            }
+        });
+    }
 
     function leadFormSubmit() {
         setLeadFormSubmitButtonStatus(false);
@@ -415,12 +422,12 @@ function closePopup(closeButtonId) {
                 break;
             default:
                 leadOrigin = currentPage;
-        }        
+        }
 
         $.ajax({
             type: "POST",
             crossDomain: true,
-            url: "https://script.google.com/macros/s/AKfycbzThA1wBsk6K_eZKsRDgM-ArKemeQ7MT98SWGV1PxYQiHw0PJx0GMPVL0SmoMxLFAVF/exec",            
+            url: "https://script.google.com/macros/s/AKfycbzThA1wBsk6K_eZKsRDgM-ArKemeQ7MT98SWGV1PxYQiHw0PJx0GMPVL0SmoMxLFAVF/exec",
             data: {
                 "origin":     leadOrigin,
                 "userAgent":  navigator.userAgent,
@@ -523,6 +530,33 @@ function closePopup(closeButtonId) {
         }
 
         $("#leadFormSubmitResult").removeClass().addClass(classes).html(message);
+    }
+
+    /***************************************************************************************************************************************************/
+    /* Sorteio */
+    /***************************************************************************************************************************************************/
+    function getSorteioResult() {
+        $.ajax({
+            type: "GET",
+            crossDomain: true,
+            url: "https://script.google.com/macros/s/AKfycbzThA1wBsk6K_eZKsRDgM-ArKemeQ7MT98SWGV1PxYQiHw0PJx0GMPVL0SmoMxLFAVF/exec",
+
+            success: function(apiResponse) {
+                if (apiResponse['result'] == 'success') {
+                    document.getElementById("sorteio-resultado-name").innerText = apiResponse['name']
+                    document.getElementById("sorteio-resultado-row").innerText = apiResponse['row']
+
+                } else {
+                    document.getElementById("sorteio-resultado-name").innerText = 'Try Again ;('
+                    document.getElementById("sorteio-resultado-row").innerText = '0'
+                }
+            },
+
+            error: function(request, status, error) {
+                document.getElementById("sorteio-resultado-name").innerText = 'Try Again ;('
+                document.getElementById("sorteio-resultado-row").innerText = '0'
+            }
+        });
     }
 
     /***************************************************************************************************************************************************/
