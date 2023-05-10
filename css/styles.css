@@ -1753,6 +1753,9 @@ a:hover.back-to-top {
 	.header-img-small {
 		display: inline-block;
 	}
+	.header-icon img {
+		width: 60%;
+	}
 	/* end of header */
 
 	/* Testimonials */
