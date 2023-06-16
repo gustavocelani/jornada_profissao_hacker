@@ -584,6 +584,12 @@ function closePopup(closeButtonId) {
     function populateTestimonials() {
         var testimonials = [
             {
+                "author": "Fernando",
+                "position": "Estudante de Cybersecurity",
+                "img": "fernando-casqueiro.jpeg",
+                "msg": "Indico com absoluta certeza o Curso Jornada Profissão Hacker para todos que estiverem querendo adquirir mais conhecimentos na área de cybersecurity. Ele me trouxe muito conhecimento e a certeza de que esse é o caminho que irei percorrer daqui para frente."
+            },
+            {
                 "author": "Rodrigo",
                 "position": "Security Engineer - Canonical",
                 "img": "rodrigo.jpeg",
