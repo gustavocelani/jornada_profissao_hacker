@@ -63,6 +63,7 @@ function closePopup(closeButtonId) {
             populateModulesTimelineContent();
             youtubeVideoSetup("header-youtube-player", "6oRoklr0Fd8");
             startCountdownToTime(new Date().getTime() + 1000 * 60 * 15); // 15 minutes from now
+            populateProvasLinkedIn();
         }
 
         // /sorteio-resultado Dynamic Content
@@ -631,6 +632,52 @@ function closePopup(closeButtonId) {
         });
 
         $('#testimonials-slider').html(testimonialHtmlEntry);
+    }
+
+    /***************************************************************************************************************************************************/
+    /* Dynamically Populate Provas LinkedIn */
+    /***************************************************************************************************************************************************/
+    function populateProvasLinkedIn() {
+        var images = [
+            'Argyle - Security Engineer.png',
+            'AWS - CloudFront.png',
+            'BairesDev - Security Analyst.png',
+            'BEES Bank (Ambev) - AppSec.png',
+            'Belvo - Senior Security Engineer.png',
+            'Boticario - Espacialista Red Team logo.png',
+            'Capgemini - AppSec.png',
+            'Cyrex - Security Engineer.png',
+            'DB - AppSec.png',
+            'Emirates Group - Security Engineer.png',
+            'EY - Consultor Senior Cybersecurity.png',
+            'Globant - Senior Cybersecurity Engineer.png',
+            'Gympass - Security Engineer.png',
+            'Hays - AppSec.png',
+            'Hotmart - OffSec Senior.png',
+            'Kaptas - AppSec.png',
+            'LisaIT - DevSecOps Senior.png',
+            'Luxoft - Cybersecurity Engineer.png',
+            'Mercado Livre - Tech Lead.png',
+            'Microsoft - Security Software Engineer.png',
+            'Monitora - DevSecOps.png',
+            'Olist - Senior Cybersecurity.png',
+            'PagSeguro - DevSecOps Senior.png',
+            'PicPay - AppSec Senior.png',
+            'Segurança de Dados - Stefanini.png',
+            'SiDi -AppSec Senior.png'
+        ]
+
+        var provasLinkedInHtmlEntry = ''
+        images.forEach(image => {
+            provasLinkedInHtmlEntry += '\
+            <div class="swiper-slide">\n\
+                <a target="_blank" href="images/provas-linkedin/' + image + '">\n\
+                    <img class="img-fluid" src="images/provas-linkedin/' + image + '">\n\
+                </a>\n\
+            </div>\n\n'
+        });
+        
+        $('#provas-linkedin-slider').html(provasLinkedInHtmlEntry);
     }
 
     /***************************************************************************************************************************************************/
