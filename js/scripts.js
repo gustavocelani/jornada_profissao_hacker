@@ -453,6 +453,7 @@ function closePopup(closeButtonId) {
     function leadFormSuccess(leadOrigin, apiResponse) {
         switch(leadOrigin) {
             case "cupom":
+            case "cybertalks":
                 leadFormSuccessCupom(apiResponse);
                 break;
             case "sorteio":
