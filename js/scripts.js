@@ -416,7 +416,7 @@ function closePopup(closeButtonId) {
         var leadOrigin = null;
         switch (currentPage) {
             case "/index":
-                leadOrigin = "cupom";
+                leadOrigin = "cybertalks";
                 break;
             case "/sorteio":
                 leadOrigin = "sorteio";
