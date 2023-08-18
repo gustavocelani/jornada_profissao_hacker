@@ -81,7 +81,7 @@ function closePopup(closeButtonId) {
 
         // On Load Popup
         if (["/index"].includes(currentPage)) {
-            spawnOnLoadPopup(5);
+            // spawnOnLoadPopup(5);
         }
     });
 
@@ -416,7 +416,7 @@ function closePopup(closeButtonId) {
         var leadOrigin = null;
         switch (currentPage) {
             case "/index":
-                leadOrigin = "cybertalks";
+                leadOrigin = "cupom";
                 break;
             case "/sorteio":
                 leadOrigin = "sorteio";
@@ -453,11 +453,13 @@ function closePopup(closeButtonId) {
     function leadFormSuccess(leadOrigin, apiResponse) {
         switch(leadOrigin) {
             case "cupom":
-            case "cybertalks":
                 leadFormSuccessCupom(apiResponse);
                 break;
             case "sorteio":
                 leadFormSuccessSorteio(apiResponse);
+                break;
+            default:
+                leadFormSuccessCupom(apiResponse);
                 break;
         }
     }
