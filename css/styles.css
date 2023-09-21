@@ -984,7 +984,7 @@ input[type='checkbox'] {
 	padding-top: 6.5rem;
 	padding-bottom: 4.25rem;
 	background-color: #2c383d;
-	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/hand-bw.jpg') center center no-repeat;
+	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/hacktown23.png') center center no-repeat;
 	background-size: cover;
 
 	/* Create the parallax scrolling effect */
@@ -999,7 +999,7 @@ input[type='checkbox'] {
 	padding-top: 6.5rem;
 	padding-bottom: 4.25rem;
 	background-color: #2c383d;
-	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/speaking-bw.jpg') center center no-repeat;
+	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/mts23.png') center center no-repeat;
 	background-size: cover;
 
 	/* Create the parallax scrolling effect */
