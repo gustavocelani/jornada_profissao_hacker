@@ -479,14 +479,13 @@ function closePopup(closeButtonId) {
             'success',
             '<i class="fas fa-ticket-alt"></i> ' + apiResponse['cupom'] +
             '<br><p>Válido até ' + apiResponse['expire_at'] + '</p>' +
-            '<a id="cupom-button" target="cupom" class="event-cta text-center green" href="' + apiResponse['url'] + '"><p class="green"><b>ADQUIRIR O TREINAMENTO AGORA!</b></p></a>'
+            '<a id="cupom-button" target="cupom" class="event-cta text-center green" href="' + apiResponse['url'] + '"><p class="green"><b>ADQUIRIR O TREINAMENTO COM DESCONTO!</b></p></a>'
         )
 
         // Reset Form
         $("#leadForm")[0].reset();
         $("input").removeClass('notEmpty');
         $("textarea").removeClass('notEmpty');
-        setLeadFormSubmitButtonStatus(true);
     }
 
     function leadFormSuccessSorteio(apiResponse) {
