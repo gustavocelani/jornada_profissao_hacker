@@ -490,19 +490,30 @@ function closePopup(closeButtonId) {
 
     function leadFormSuccessSorteio(apiResponse) {
         // Building Sorteio PopUp
-        document.getElementById("sorteio-row").innerText = apiResponse['row']
+        if (document.getElementById("sorteio-row") != null) {
+            document.getElementById("sorteio-row").innerText = apiResponse['row']
+        }
 
         // Spawn Cupom PopUp
         document.getElementById("leadFormSubmitResult").setAttribute('hidden', '')
         $("#spawn-form-lightbox").click();
 
-        // Success Cupom Message
+        // Success Cupom Message /*
+        // leadFormMessage(
+        //     'success',
+        //     '<i class="fas fa-ticket-alt"></i> Número da Sorte: ' + apiResponse['row'] +
+        //     '<br><p>O sorteio acontecerá em breve!</p>' +
+        //     '<p>Enquanto isso...</p>' +
+        //     '<a class="btn-solid-lg text-center" href="index.html">SAIBA MAIS SOBRE A JORNADA</a>'
+        // )
+
         leadFormMessage(
             'success',
-            '<i class="fas fa-ticket-alt"></i> Número da Sorte: ' + apiResponse['row'] +
-            '<br><p>O sorteio acontecerá em breve!</p>' +
+            '<i class="fas fa-ticket-alt"></i> PARABÉNS' +
+            '<br><p>Inscirção realizada com sucesso!</p>' + 
+            '<p>Você será notificado pelos contatos da sua inscrição caso for sorteado(a).</p>' +
             '<p>Enquanto isso...</p>' +
-            '<a class="btn-solid-lg text-center" href="index.html">SAIBA MAIS SOBRE A JORNADA</a>'
+            '<a class="btn-solid-lg text-center page-scroll" href="#header">SAIBA MAIS SOBRE OS PRÊMIOS</a>'
         )
 
         // Reset Form (Unless Submit Button)
