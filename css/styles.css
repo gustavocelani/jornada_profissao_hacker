@@ -8,6 +8,7 @@
 /* - #272727 - Navbar
 /* - #242e31 - Dark Backgrounds
 /* - #2c383d - Backgrounds
+/* - #ffd101 - Gold
 /***************************************************************************************************************************************************/
 
 /***************************************************************************************************************************************************/
@@ -92,6 +93,10 @@ hr {
 
 .blue {
 	color: #00c9db;
+}
+
+.gold {
+	color: #ffd101;
 }
 
 .green {
@@ -1481,6 +1486,12 @@ input[type='checkbox'] {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.leads-sorteio {
+	padding-top: 6.875rem;
+	padding-bottom: 6.875rem;
+	background-color: #2c383d;
 }
 
 .form {
