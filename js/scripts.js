@@ -62,7 +62,7 @@ function closePopup(closeButtonId) {
             populateTestimonials();
             populateModulesTimelineContent();
             youtubeVideoSetup("header-youtube-player", "6oRoklr0Fd8");
-            startCountdownToTime(new Date().getTime() + 1000 * 60 * 15); // 15 minutes from now
+            // startCountdownToTime(new Date().getTime() + 1000 * 60 * 15); // 15 minutes from now
             populateProvasLinkedIn();
         }
 
@@ -81,7 +81,7 @@ function closePopup(closeButtonId) {
 
         // On Load Popup
         if (["/index"].includes(currentPage)) {
-            // spawnOnLoadPopup(5);
+            spawnOnLoadPopup(5);
         }
     });
 
@@ -1054,7 +1054,7 @@ function closePopup(closeButtonId) {
         ' + lightboxListHtmlEntry + '\n\
         </table>\n\
         <a target="module-' + lightboxId + '" onclick="closePopup(\'exit-details-' + lightboxId + '\');" class="event-cta btn-solid-lg page-scroll" href="#product">GARANTIR MINHA VAGA</a>\n\
-        <p class="blue"><b>&emsp;* Últimas vagas disponíveis!</b></p>\n\
+        <p class="blue"><b>&emsp;* Inscrições abertas</b></p>\n\
         </div>\n\
         \n\
         <div class="col-lg-3 basic-1">\n\
