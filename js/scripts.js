@@ -80,9 +80,9 @@ function closePopup(closeButtonId) {
         hidePreloader();
 
         // On Load Popup
-        if (["/index"].includes(currentPage)) {
-            spawnOnLoadPopup(5);
-        }
+        // if (["/index"].includes(currentPage)) {
+        //     spawnOnLoadPopup(5);
+        // }
     });
 
     /***************************************************************************************************************************************************/
