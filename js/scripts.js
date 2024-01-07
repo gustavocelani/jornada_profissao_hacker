@@ -2,7 +2,7 @@
 /* Maintained by Gustavo Celani */
 /* Copyright 2023 All rights reserved */
 /***************************************************************************************************************************************************/
-const globalVersion = 0.8;
+const globalVersion = 1.0;
 
 /***************************************************************************************************************************************************/
 /* iOS Devices Supported Background Attachment */
@@ -55,7 +55,7 @@ function closePopup(closeButtonId) {
         }
 
         // Set Copyright Version Text
-        $('#copyright-version-text').html('Developed and Maintained By <span class="blue">Gustavo Celani</span> - v' + globalVersion);
+        $('#copyright-version-text').html('Developed and Maintained By <a class="blue no-underline" href="https://gustavocelani.com" target="_blank">Gustavo Celani</a> - v' + globalVersion);
 
         // Index.html Dynamic Content
         if (["/index"].includes(currentPage)) {
@@ -194,7 +194,7 @@ function closePopup(closeButtonId) {
                 prevEl: '.swiper-button-prev',
             },
             spaceBetween: 30,
-            slidesPerView: 5,
+            slidesPerView: 3,
             breakpoints: {
                 // when window is <= 380px
                 380: {
@@ -203,22 +203,22 @@ function closePopup(closeButtonId) {
                 },
                 // when window is <= 516px
                 516: {
-                    slidesPerView: 2,
+                    slidesPerView: 1,
                     spaceBetween: 10
                 },
                 // when window is <= 768px
                 768: {
-                    slidesPerView: 2,
+                    slidesPerView: 1,
                     spaceBetween: 20
                 },
                 // when window is <= 992px
                 992: {
-                    slidesPerView: 2,
+                    slidesPerView: 1,
                     spaceBetween: 20
                 },
                 // when window is <= 1200px
                 1200: {
-                    slidesPerView: 5,
+                    slidesPerView: 3,
                     spaceBetween: 30
                 },
             }
@@ -310,7 +310,7 @@ function closePopup(closeButtonId) {
         const youtubeVideos = document.getElementsByClassName(elemnetId)
         for (let i = 0; i < youtubeVideos.length; i++) {
             youtubeVideos[i].src = 'https://www.youtube.com/embed/' + videoId
-                + '?autoplay=1' // Auto Play
+                + '?autoplay=0' // Auto Play
                 + '&controls=1' // YouTube Controls
                 + '&rel=0'      // Related Videos
                 + '&loop=1'     // Loop
@@ -684,9 +684,7 @@ function closePopup(closeButtonId) {
         images.forEach(image => {
             provasLinkedInHtmlEntry += '\
             <div class="swiper-slide">\n\
-                <a target="_blank" href="images/provas-linkedin/' + image + '">\n\
-                    <img class="img-fluid" src="images/provas-linkedin/' + image + '">\n\
-                </a>\n\
+                <img class="img-fluid" src="images/provas-linkedin/' + image + '">\n\
             </div>\n\n'
         });
         
@@ -701,11 +699,11 @@ function closePopup(closeButtonId) {
         // Introdução à Cybersecurity
         $('#content-intro-cybersec').html(buildModuleTimelineContent(
             'left',
-            'Introdução à<br>Cybersecurity',
+            'Introdução à Cybersecurity',
             'shield.png',
+            'cybersecurity.jpg',
             'intro-cybersec',
-            '',
-            '6',
+            'Apresento brevemente, de forma direta e indireta, qual o contexto da área de segurança da informação, desde como ela surgiu, até como ela se estabeleceu no mercado corporativo atual e no domínio cibernético.',
             [
                 'O Valor da "Informação"',
                 'Um Único Dia Sem Cybersecurity',
@@ -719,17 +717,18 @@ function closePopup(closeButtonId) {
                 'Os Pilares da Segurança da Infomação',
                 'Família ISO 27000',
                 'Blue Team VS Red Team',
-            ]
+            ],
+            false
         ));
 
         // Estratégias de Blue Team
         $('#content-blue-team').html(buildModuleTimelineContent(
-            'right',
-            'Estratégias de<br>Blue Team',
+            'left',
+            'Estratégias de Blue Team',
             'dashboard.png',
+            'blue-team.jpg',
             'blue-team',
-            '',
-            '2',
+            'Abordo as principais atribuições de um Blue Team no contexto corporativo. Aqui são expostas, de forma estratégica, as atuações do SOC (Security Operations Center), Inteligência de Ameaças (Threat Intelligence), Gestão e Resposta à Incidentes de Segurança e Table Top Exercises.',
             [
                 'Blue Team',
                 'SOC (Security Operations Centre)',
@@ -737,17 +736,18 @@ function closePopup(closeButtonId) {
                 'Gestão de Incidentes de Segurança',
                 'Resposta à Incidentes de Segurança',
                 'TTX - Table Top Exercises',
-            ]
+            ],
+            false
         ));
 
         // Estratégias de Forense Computacional
         $('#content-forense').html(buildModuleTimelineContent(
             'left',
-            'Estratégias de Forense<br>Computacional',
+            'Estratégias de Forense Computacional',
             'forensics.png',
+            'forensics.jpg',
             'forense',
-            '',
-            '2',
+            'Abordo as principais atribuições da Forense Computacional no contexto corporativo. Aqui são expostas, de forma estratégica, as atuações de um perito forense computacional. São apresentados os principais conceitos e terminologias da área, incluindo exemplos práticos sobre memória computacional, sistemas de arquivos, metadados e recuperação de arquivos. Além de apresentar os principais tipos de malware que ameaçam o domínio cibernético.',
             [
                 'Forense Computacional',
                 'Principais Conceitos',
@@ -757,17 +757,18 @@ function closePopup(closeButtonId) {
                 'Análise de Memória (Recuperação de Arquivos Deletados)',
                 'Tipos de Malware',
                 'Análise de Malware',
-            ]
+            ],
+            false
         ));
 
         // Estratégias de Red Team
         $('#content-red-team').html(buildModuleTimelineContent(
-            'right',
-            'Estratégias de<br>Red Team',
+            'left',
+            'Estratégias de Red Team',
             'hacker.png',
+            'red-team.jpg',
             'red-team',
-            '',
-            '3',
+            'Abordo as principais atribuições de um profissional de Red Team dentro do mercado de trabalho corporativo. Aqui são explicadas as atuações de um hacker ético passando por tipos de PenTest, principais metodologias, como fazer seu planejamento e qual deve ser a mentalidade que o profissional deve ter para realizar cada uma das etapas do teste de intrusão até a entrega de um relatório com valor agregado.',
             [
                 'Red Team & Ethical Hackers',
                 'Tipos de PenTest',
@@ -779,31 +780,33 @@ function closePopup(closeButtonId) {
                 '#4 Escalada de Privilégios',
                 '#5 Pós Exploração',
                 '#6 Relatório'
-            ]
+            ],
+            false
         ));
 
-        // Estratégias de Red Team
+        // Hacking na Prática
         $('#content-hacking-pratica').html(buildModuleTimelineContent(
             'left',
-            '<span class="blue">[ BÔNUS ]</span><br>Hacking na Prática',
+            '<span class="blue">[ BÔNUS ]</span> Hacking na Prática',
             'hacker_red.png',
+            'hacking.jpg',
             'hacking-pratica',
-            'CONTEÚDO BÔNUS',
-            '2',
+            '<b class="blue" style="font-size: medium">EXCLUSIVO NO TREINAMENTO ONLINE</b><br>Módulo totalmente prático onde eu, literalmente, hackeio um servidor web utilizando as metodologias e estratégias apresentadas de tal forma que você internalize todas as etapas de uma invasão e desenvolva sua mentalidade para compreender a linha de raciocínio que eu utilizo nos PenTests e, consequentemente, seja capaz de reproduzir essa mesma linha de pensamento em qualquer outro teste de intrusão.',
             [
                 'Hackeando um Servidor Web na Prática',
                 'Mindset Hacker'
-            ]
+            ],
+            true
         ));
 
-        // Mercado de Trabalho
-        $('#content-mercado').html(buildModuleTimelineContent(
-            'right',
-            '<span class="blue">[ EXCLUSIVO ]</span><br>Mercado de Trabalho',
+        // Estratégias de Carreira
+        $('#content-carreira').html(buildModuleTimelineContent(
+            'left',
+            '<span class="blue">[ EXCLUSIVO ]</span> Estratégias de Carreira',
             'talent-search.png',
+            'professional.jpg',
             'mercado',
-            'EXCLUSIVO DESTE TREINAMENTO',
-            '3',
+            '<b class="blue" style="font-size: medium">IMPULSIONE SUA CARREIRA</b><br>Transmito uma visão estratégica de como ser contratado para atuar e prosperar nessas áreas de cybersecurity que foram exploradas anteriormente. É apresentado como funciona o ecossistema nas empresas juntamente com diversas estratégias e métodos práticos para você se preparar de forma otimizada e direcionada, alcançando seu próximo objetivo de carreira o mais rápido possível. Seja ele, conquistar seu primeiro emprego, migrar para a área ou prosperar dentro de seu contexto atual.',
             [
                 'Ecossistema de Cybersecurity',
                 'Segredo do Sucesso',
@@ -812,259 +815,59 @@ function closePopup(closeButtonId) {
                 '#2 "Ambos (Skills) Te Fazem Ser Contratado"',
                 '#3 "Evolução Contínua Te Faz Prosperar"',
                 'Próximos Passos'
-            ]
-        ));
-
-        // Segurança em Redes Computacionais
-        $('#content-redes').html(buildModuleTimelineContent(
-            'left',
-            'Segurança em Redes<br>Computacionais',
-            'computer.png',
-            'redes',
-            '',
-            '8',
-            [
-                'O que é a Internet?',
-                'Endereços IPv4',
-                'Sub-Redes',
-                'Endereços IPv6',
-                'Endereços MAC (Media Access Control)',
-                'Address Resolution Protocol (ARP)',
-                'Protocolos de Comunicação de Rede',
-                'Topologias de Rede LAN (Local Area Network)',
-                'Modelo de Camadas OSI (Open Systems Interconnection)',
-                'Modelo de Camadas TCP/IP',
-                'Dynamic Host Configuration Protocol (DHCP)',
-                'Internet Control Message Protocol (ICMP)',
-                'Domain Name System (DNS)',
-                'Secure Shell (SSH)',
-                'Rede Tor: Deep Web e Anonimização',
-                'Prática de Anonimização',
-            ]
-        ));
-
-        // Princípios de Segurança em Software
-        $('#content-seg-software').html(buildModuleTimelineContent(
-            'right',
-            'Princípios de<br>Segurança em Software',
-            'principle.png',
-            'seg-software',
-            '',
-            '6',
-            [
-                'Princípios de Segurança em Software',
-                'Privilégios Mínimos',
-                'Defesa em Profundidade',
-                'Minimize a Superfície de Ataque',
-                'Estabeleça Padrões Seguros',
-                'Falhe com Segurança',
-                'Evite Aplicar Segurança por Obscuridade',
-                'Separação de Funções',
-                'Modelo de Segurança Positiva',
-                'Mantenha a Segurança Simples',
-                'Corrija as Falhas de Segurança Corretamente',
-                'Zero Trust',
-                'Security By Design',
-            ]
-        ));
-
-        // Desenvolvimento de Software Seguro
-        $('#content-dev-seguro').html(buildModuleTimelineContent(
-            'left',
-            'Desenvolvimento de<br>Software Seguro',
-            'app-development.png',
-            'dev-seguro',
-            '',
-            '1',
-            [
-                'O que é S-SDLC?',
-                'Etapas do Ciclo de Desenvolvimento de Software Padrão (SDLC)',
-                'Etapas do Ciclo de Desenvolvimento de Software Seguro (S-SDLC)',
-                'Exemplo de Funcionalidade sobre SDLC',
-                'Vulnerabilidades Introduzidas com a Funcionalidade',
-                'Exemplo de Funcionalidade sobre S-SDLC',
-            ]
-        ));
-
-        // Segurança em Aplicações
-        $('#content-seg-app').html(buildModuleTimelineContent(
-            'right',
-            'Segurança em<br>Aplicações',
-            'web-development.png',
-            'seg-app',
-            '',
-            '12',
-            [
-                'O que é uma Vulnerabilidade?',
-                'Gestão de Vulnerabilidades',
-                'Identificar',
-                'Software Composition Analysis (SCA)',
-                'Static Analysis Security Testing (SAST)',
-                'Dynamic Analysis Security Testing (DAST)',
-                'Interactive Analysis Security Testing (IAST)',
-                'Testes de Intrusão (PenTest)',
-                'Bug Bounty',
-                'Avaliar e Classificar',
-                'Common Vulnerabilities Scoring System (CVSS)',
-                'Common Weakness Enumeration (CWE)',
-                'Common Vulnerabilities and Exposures (CVE)',
-                'CVSS vs CWE vs CVE',
-                'Priorizar',
-                'Service Level Agreement (SLA)',
-                'Corrigir',
-                'Maturidade em Cybersecurity',
-                'Software Assurance Maturity Model (OpenSAMM)',
-                'Application Security Verification Standard (ASVS)',
-                'Web Security Testing Guide (WSTG)',
-                'OWASP Proactive Controls',
-            ]
-        ));
-
-        // Segurança em Aplicações Web
-        $('#content-seg-web').html(buildModuleTimelineContent(
-            'left',
-            'Segurança em<br>Aplicações Web',
-            'web-link.png',
-            'seg-web',
-            '',
-            '8',
-            [
-                'Hyper-Text Transfer Protocol (HTTP)',
-                'Uniform Resource Locator (URL)',
-                'Requisições & Respostas HTTP',
-                'Métodos HTTP',
-                'Códigos de Status HTTP',
-                'Exemplo de Requisições Web entre Cliente e Servidor',
-                'Arquitetura de uma Aplicação Web',
-                'OWASP Top 10',
-                'Falhas de Controle de Acesso',
-                'Exposição de Dados Sensíveis',
-                'Entidades Externas XML (XXE)',
-                'Cross-Site Scripting (XSS)',
-                'Falhas de Autenticação',
-                'Configurações Incorretas de Seguras',
-                'Desserialização Insegura',
-                'Uso de Componentes com Vulnerabilidades Conhecidas',
-                'Monitoramento Insuficiente',
-                'Server-Side Request Forgery (SSRF)',
-            ]
-        ));
-
-        // Criptografia
-        $('#content-cripto').html(buildModuleTimelineContent(
-            'right',
-            'Criptografia<br>Computacional',
-            'encryption.png',
-            'cripto',
-            '',
-            '4',
-            [
-                'Importância da Criptografia',
-                'Encoding e Decoding',
-                'Funções Hash',
-                'Verificação de Integridade',
-                'Armazenamento Seguro de Credenciais',
-                'Criptografia Simétrica',
-                'Criptografia Assimétrica',
-                'Assinaturas Digitais',
-                'Certificados Digitais',
-                'HTTPS (HTTP over TLS)',
-                'Esteganografia',
-                'Computação Quântica na Criptografia',
-            ]
+            ],
+            true
         ));
     }
 
-    function buildModuleTimelineContent(orientation, title, iconFileName, lightboxId, customHtmlMessage, iconMargin, videoNamesList) {
+    function buildModuleTimelineContent(orientation, title, iconFileName, imageFileName, id, summary, contentList, highlight) {
         var visualContentHtmlEntry = '';
 
+        var contentListHtmlEntry = '';
+        contentList.forEach(contentName => {
+            contentListHtmlEntry += '<p style="margin-bottom: 0; margin-top: 0;"><i class="blue fas fa-arrow-circle-right"></i> ' + contentName + '</p>\n'
+        });
+
+        var imageBlockHtmlEntry = '\
+                <div class="col-lg-4">\n\
+                    <img class="img-fluid module-image" src="images/modules/' + imageFileName + '">\n\
+                </div>\n\
+        ';
+
+        var contentBlockHtmlEntry = '\
+                <div class="col-lg-8">\n\
+                    <h3 class="module-title"><img class="img-fluid module-icon" src="images/icons/' + iconFileName + '"> ' + title + '</h3>\n\
+                    <p class="text-justify">' + summary + '</p>\n\
+                    <details class="event-details" target="' + id + '">\n\
+                        <summary><i class="fa-solid fa-bars-staggered"></i> Conteúdo Detalhado do Módulo</summary>\n\
+                        <div style="padding: 1rem;">\n\
+                            ' + contentListHtmlEntry + '\n\
+                        </div>\n\
+                    </details>\n\
+                </div>\n\
+        ';
+
         if (orientation == 'left') {
-            visualContentHtmlEntry = '\
-            <!-- Visual Content -->\n\
-            <div class="row module-row">\n\
-            \n\
-            <!-- Image -->\n\
-            <div class="offset-lg-3 col-lg-2 col-sm-2 module-icon">\n\
-            <a target="' + lightboxId + '" class="event-details popup-with-move-anim" href="#details-' + lightboxId + '">\n\
-            <img class="img-fluid icon" src="images/icons/' + iconFileName + '">\n\
-            </a>\n\
-            </div>\n\
-            \n\
-            <!-- Divider -->\n\
-            <div class="divider col-lg-2 col-sm-2 text-center">\n\
-            <img class="img-fluid" style="height: 15rem;" src="images/components/timeline.png">\n\
-            </div>\n\
-            \n\
-            <!-- Text -->\n\
-            <div class="col-lg-5 col-sm-10 module-title">\n\
-            <h3>' + title + '</h3>\n\
-            <a target="' + lightboxId + '" class="event-details btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">CONTEÚDO</a>\n\
-            </div>\n\
-            </div> <!-- end of Visual Content -->\n\
-            ';
+            var visualContentHtmlEntry = '';
+            visualContentHtmlEntry += (highlight) ? '<div class="row module-highlight">\n' : '<div class="row module-block">\n';
+            visualContentHtmlEntry += '\
+            ' + imageBlockHtmlEntry + '\n\
+            ' + contentBlockHtmlEntry + '\n\
+            </div>\n';
 
         } else if (orientation == 'right') {
-            visualContentHtmlEntry = '\
-            <!-- Visual Content -->\n\
-            <div class="row module-row">\n\
-            \n\
-            <!-- Text -->\n\
-            <div class="col-lg-5 col-sm-10 text-right module-title">\n\
-            <h3>' + title + '</h3>\n\
-            <a target="' + lightboxId + '" class="event-details btn-solid-reg popup-with-move-anim" href="#details-' + lightboxId + '">CONTEÚDO</a>\n\
-            </div>\n\
-            \n\
-            <!-- Divider -->\n\
-            <div class="divider col-lg-2 col-sm-2 text-center">\n\
-            <img class="img-fluid" style="height: 15rem;" src="images/components/timeline.png">\n\
-            </div>\n\
-            \n\
-            <!-- Image -->\n\
-            <div class="col-lg-2 col-sm-2 module-icon">\n\
-            <a target="' + lightboxId + '" class="event-details popup-with-move-anim" href="#details-' + lightboxId + '">\n\
-            <img class="img-fluid" src="images/icons/' + iconFileName + '">\n\
-            </a>\n\
-            </div>\n\
-            </div> <!-- end of Visual Content -->\n\
-            ';
+            var visualContentHtmlEntry = '';
+            visualContentHtmlEntry += highlight ? '<div class="row module-highlight">\n' : '<div class="row module-block">\n';
+            visualContentHtmlEntry += '\
+            ' + contentBlockHtmlEntry + '\n\
+            ' + imageBlockHtmlEntry + '\n\
+            </div>\n';
 
         } else {
             return null;
         }
 
-        var lightboxListHtmlEntry = '';
-        videoNamesList.forEach(videoName => {
-            lightboxListHtmlEntry += '<tr><td class="icon-cell"><i class="fas fa-arrow-circle-right"></i></td><td>' + videoName + '</td></tr>\n'
-        });
-
-        var lightboxHtmlEntry = '\
-        <!-- Lightbox -->\n\
-        <div id="details-' + lightboxId + '" class="lightbox-basic zoom-anim-dialog mfp-hide">\n\
-        <div class="row">\n\
-        \n\
-        <!-- Close Button -->\n\
-        <button id="exit-details-' + lightboxId + '" title="Fechar (Esc)" type="button" class="mfp-close x-button">x</button>\n\
-        \n\
-        <div class="col-lg-9">\n\
-        <h3>' + title + '</h3>\n\
-        <b class="blue">' + customHtmlMessage + '</b>\n\
-        <hr>\n\
-        <h4>Conteúdo Detalhado</h4>\n\
-        <table>\n\
-        ' + lightboxListHtmlEntry + '\n\
-        </table>\n\
-        <a target="module-' + lightboxId + '" onclick="closePopup(\'exit-details-' + lightboxId + '\');" class="event-cta btn-solid-lg page-scroll" href="#product">GARANTIR MINHA VAGA</a>\n\
-        <p class="blue"><b>&emsp;* Inscrições abertas</b></p>\n\
-        </div>\n\
-        \n\
-        <div class="col-lg-3 basic-1">\n\
-        <img class="img-fluid" style="padding-top: ' + iconMargin + 'rem;" src="images/icons/' + iconFileName + '">\n\
-        </div>\n\
-        </div> <!-- end of row -->\n\
-        </div> <!-- end of lightbox-basic -->\n\
-        ';
-
-        return visualContentHtmlEntry + '\n' + lightboxHtmlEntry;
+        return visualContentHtmlEntry;
     }
 
 })(jQuery);
