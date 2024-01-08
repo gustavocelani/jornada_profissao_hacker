@@ -19,7 +19,7 @@ const globalVersion = 1.0;
 /* Current Page by Path */
 /***************************************************************************************************************************************************/
 var currentPage = '/index';
-switch (window.location.pathname.split("jornada_profissao_hacker")[1]) {
+switch (window.location.pathname.includes("jornada_profissao_hacker") ? window.location.pathname.split("jornada_profissao_hacker")[1]: window.location.pathname) {
 
     // Sorteio
     case "/sorteio":
