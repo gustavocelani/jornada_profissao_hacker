@@ -19,11 +19,32 @@ const globalVersion = 1.0;
 /* Current Page by Path */
 /***************************************************************************************************************************************************/
 var currentPage = '/index';
-["/index", "/sorteio", "/sorteio-resultado"].forEach(page => {
-    if (window.location.href.includes(page)) {
-        currentPage = page;
-    }
-});
+switch (window.location.pathname.split("jornada_profissao_hacker")[1]) {
+
+    // Sorteio
+    case "/sorteio":
+    case "/sorteio/":
+    case "/sorteio/index":
+    case "/sorteio/index.html":
+        currentPage = "/sorteio";
+        break;
+
+    // Sorteio Result
+    case "/sorteio/result":
+    case "/sorteio/result.html":
+    case "/sorteio/index.html":
+        currentPage = "/sorteio/result";
+        break;
+
+    // Index
+    case "/":
+    case "/index":
+    case "/index.html":
+    default:
+        currentPage = "/index";
+        break;
+}
+
 
 /***************************************************************************************************************************************************/
 /* Pop-Up */
@@ -67,7 +88,7 @@ function closePopup(closeButtonId) {
         }
 
         // /sorteio-resultado Dynamic Content
-        if (["/sorteio-resultado"].includes(currentPage)) {
+        if (["/sorteio/result"].includes(currentPage)) {
             getSorteioResult();
         }
 
@@ -465,27 +486,24 @@ function closePopup(closeButtonId) {
     }
 
     function leadFormSuccessCupom(apiResponse) {
-        // Building Cupom PopUp
-        document.getElementById("cupom").innerText = apiResponse['cupom']
-        document.getElementById("cupom-expire").innerText = apiResponse['expire_at']
-        document.getElementById("cupom-button").setAttribute('href', apiResponse['url'])
-
-        // Spawn Cupom PopUp
-        document.getElementById("leadFormSubmitResult").setAttribute('hidden', '')
-        $("#spawn-form-lightbox").click();
-
-        // Success Cupom Message
+        // Success Offer Message
         leadFormMessage(
             'success',
-            '<i class="fas fa-ticket-alt"></i> ' + apiResponse['cupom'] +
-            '<br><p>Válido até ' + apiResponse['expire_at'] + '</p>' +
-            '<a id="cupom-button" target="cupom" class="event-cta text-center green" href="' + apiResponse['url'] + '"><p class="green"><b>ADQUIRIR O TREINAMENTO COM DESCONTO!</b></p></a>'
+            // '<a id="offer-button" target="_blank" class="event-cta btn-solid-lg-gold text-center" style="font-size: x-large" href="' + apiResponse['url'] + '"><i class="fas fa-ticket-alt"></i> ACESSAR OFERTA</a>'
+            '<i class="fas fa-fire"></i> PARABÉNS' +
+            '<br><p>Você será notificado com antecedência!</p>'
+
         )
 
-        // Reset Form
-        $("#leadForm")[0].reset();
+        // Hide and Reset Form
+        for (let element of document.getElementsByClassName("form-group")) {
+            element.style.display = "none";
+        }
         $("input").removeClass('notEmpty');
         $("textarea").removeClass('notEmpty');
+
+        // Open Offer Checkout
+        // window.open(apiResponse['url'], '_blank');
     }
 
     function leadFormSuccessSorteio(apiResponse) {
@@ -498,26 +516,21 @@ function closePopup(closeButtonId) {
         document.getElementById("leadFormSubmitResult").setAttribute('hidden', '')
         $("#spawn-form-lightbox").click();
 
-        // Success Cupom Message /*
-        // leadFormMessage(
-        //     'success',
-        //     '<i class="fas fa-ticket-alt"></i> Número da Sorte: ' + apiResponse['row'] +
-        //     '<br><p>O sorteio acontecerá em breve!</p>' +
-        //     '<p>Enquanto isso...</p>' +
-        //     '<a class="btn-solid-lg text-center" href="index.html">SAIBA MAIS SOBRE A JORNADA</a>'
-        // )
-
+        // Success Lead Message
         leadFormMessage(
             'success',
-            '<i class="fas fa-ticket-alt"></i> PARABÉNS' +
-            '<br><p>Inscirção realizada com sucesso!</p>' + 
-            '<p>Você será notificado pelos contatos da sua inscrição caso for sorteado(a).</p>' +
-            '<p>Enquanto isso...</p>' +
-            '<a class="btn-solid-lg text-center page-scroll" href="#header">SAIBA MAIS SOBRE OS PRÊMIOS</a>'
+            '<i class="fas fa-gift"></i> PARABÉNS' +
+            '<br><p>Inscrição realizada com sucesso!</p>' + 
+            '<br><i class="fas fa-ticket-alt"></i> Número da Sorte: ' + apiResponse['row'] +
+            '<br><p>O sorteio acontecerá em breve!</p>' +
+            '<br><p>Enquanto isso...</p>' +
+            '<a class="btn-solid-lg text-center" href="index.html">SAIBA MAIS SOBRE A JORNADA</a>'
         )
 
-        // Reset Form (Unless Submit Button)
-        $("#leadForm")[0].reset();
+        // Hide and Reset Form
+        for (let element of document.getElementsByClassName("form-group")) {
+            element.style.display = "none";
+        }
         $("input").removeClass('notEmpty');
         $("input").prop('disabled', true);
         $("select").removeClass('notEmpty');
@@ -536,7 +549,7 @@ function closePopup(closeButtonId) {
         var classes = "text-center tada animated "
         switch (type) {
             case 'success':
-                classes += 'h2 green'
+                classes += 'h2 gold'
                 break
             case 'error':
                 classes += 'p red'
@@ -717,6 +730,7 @@ function closePopup(closeButtonId) {
                 'Os Pilares da Segurança da Infomação',
                 'Família ISO 27000',
                 'Blue Team VS Red Team',
+                'Quiz'
             ],
             false
         ));
@@ -736,6 +750,7 @@ function closePopup(closeButtonId) {
                 'Gestão de Incidentes de Segurança',
                 'Resposta à Incidentes de Segurança',
                 'TTX - Table Top Exercises',
+                'Quiz'
             ],
             false
         ));
@@ -757,6 +772,7 @@ function closePopup(closeButtonId) {
                 'Análise de Memória (Recuperação de Arquivos Deletados)',
                 'Tipos de Malware',
                 'Análise de Malware',
+                'Quiz'
             ],
             false
         ));
@@ -779,7 +795,8 @@ function closePopup(closeButtonId) {
                 '#3 Exploração',
                 '#4 Escalada de Privilégios',
                 '#5 Pós Exploração',
-                '#6 Relatório'
+                '#6 Relatório',
+                'Quiz'
             ],
             false
         ));
@@ -787,11 +804,11 @@ function closePopup(closeButtonId) {
         // Hacking na Prática
         $('#content-hacking-pratica').html(buildModuleTimelineContent(
             'left',
-            '<span class="blue">[ BÔNUS ]</span> Hacking na Prática',
+            '<span class="gold">[ BÔNUS ]</span> Hacking na Prática',
             'hacker_red.png',
             'hacking.jpg',
             'hacking-pratica',
-            '<b class="blue" style="font-size: medium">EXCLUSIVO NO TREINAMENTO ONLINE</b><br>Módulo totalmente prático onde eu, literalmente, hackeio um servidor web utilizando as metodologias e estratégias apresentadas de tal forma que você internalize todas as etapas de uma invasão e desenvolva sua mentalidade para compreender a linha de raciocínio que eu utilizo nos PenTests e, consequentemente, seja capaz de reproduzir essa mesma linha de pensamento em qualquer outro teste de intrusão.',
+            '<b class="gold" style="font-size: medium">EXCLUSIVO NO TREINAMENTO ONLINE</b><br>Módulo totalmente prático onde eu, literalmente, hackeio um servidor web utilizando as metodologias e estratégias apresentadas de tal forma que você internalize todas as etapas de uma invasão e desenvolva sua mentalidade para compreender a linha de raciocínio que eu utilizo nos PenTests e, consequentemente, seja capaz de reproduzir essa mesma linha de pensamento em qualquer outro teste de intrusão.',
             [
                 'Hackeando um Servidor Web na Prática',
                 'Mindset Hacker'
@@ -802,11 +819,11 @@ function closePopup(closeButtonId) {
         // Estratégias de Carreira
         $('#content-carreira').html(buildModuleTimelineContent(
             'left',
-            '<span class="blue">[ EXCLUSIVO ]</span> Estratégias de Carreira',
+            '<span class="gold">[ EXCLUSIVO ]</span> Estratégias de Carreira',
             'talent-search.png',
             'professional.jpg',
             'mercado',
-            '<b class="blue" style="font-size: medium">IMPULSIONE SUA CARREIRA</b><br>Transmito uma visão estratégica de como ser contratado para atuar e prosperar nessas áreas de cybersecurity que foram exploradas anteriormente. É apresentado como funciona o ecossistema nas empresas juntamente com diversas estratégias e métodos práticos para você se preparar de forma otimizada e direcionada, alcançando seu próximo objetivo de carreira o mais rápido possível. Seja ele, conquistar seu primeiro emprego, migrar para a área ou prosperar dentro de seu contexto atual.',
+            '<b class="gold" style="font-size: medium">PROSPERE EM SUA CARREIRA</b><br>Transmito uma visão estratégica de como ser contratado para atuar e prosperar nessas áreas de cybersecurity que foram exploradas anteriormente. É apresentado como funciona o ecossistema nas empresas juntamente com diversas estratégias e métodos práticos para você se preparar de forma otimizada e direcionada, alcançando seu próximo objetivo de carreira o mais rápido possível. Seja ele, conquistar seu primeiro emprego, migrar para a área ou prosperar dentro de seu contexto atual.',
             [
                 'Ecossistema de Cybersecurity',
                 'Segredo do Sucesso',

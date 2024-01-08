@@ -4,4 +4,4 @@ Domain: [jornadaprofissaohacker.com](https://jornadaprofissaohacker.com)
 
 ---------------------------------
 
-![WebSite Jornada Profissão Hacker](hist/frontend-v08.png "v0.8")
+![WebSite Jornada Profissão Hacker](hist/frontend-v10.png "v1.0")
