@@ -8,7 +8,7 @@
 /* - #272727 - Navbar
 /* - #242e31 - Dark Backgrounds
 /* - #2c383d - Backgrounds
-/* - #ffd101 - Gold
+/* - #d6bd68 - Gold
 /***************************************************************************************************************************************************/
 
 /***************************************************************************************************************************************************/
@@ -96,7 +96,7 @@ hr {
 }
 
 .gold {
-	color: #ffd101;
+	color: #d6bd68;
 }
 
 .green {
@@ -140,6 +140,7 @@ a.white {
 	font: 700 1rem/1.5rem "Montserrat", sans-serif;
 }
 
+/* Button Solid Regular */
 .btn-solid-reg {
 	display: inline-block;
 	padding: 1.1875rem 2.125rem 1.1875rem 2.125rem;
@@ -151,13 +152,13 @@ a.white {
 	text-decoration: none;
 	transition: all 0.2s;
 }
-
 .btn-solid-reg:hover {
 	background-color: transparent;
 	color: #00c9db;
 	text-decoration: none;
 }
 
+/* Button Solid Large */
 .btn-solid-lg {
 	display: inline-block;
 	padding: 1.375rem 2.625rem 1.375rem 2.625rem;
@@ -169,29 +170,27 @@ a.white {
 	text-decoration: none;
 	transition: all 0.2s;
 }
-
 .btn-solid-lg:hover {
 	background-color: transparent;
 	color: #00c9db;
 	text-decoration: none;
 }
 
-.link-solid-lg {	
-	color: #f1f1f8;
-	border: 0.125rem solid #f1f1f8;
-	font: 700 2.25rem/2.75rem "Montserrat", sans-serif;
-	transition: all 0.2s;
+/* Button Solid Large Gold */
+.btn-solid-lg-gold {
+	display: inline-block;
+	padding: 1.375rem 2.625rem 1.375rem 2.625rem;
+	border: 0.125rem solid #d6bd68;
+	border-radius: 2rem;
+	background-color: #d6bd68;
+	color: #fff;
+	font: 700 0.75rem/0 "Montserrat", sans-serif;
 	text-decoration: none;
-	text-align: center;
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-	padding-left: 3rem;
-	padding-right: 3rem;
-	border-radius: 40px;
+	transition: all 0.2s;
 }
-
-.link-solid-lg:hover {
-	color: rgb(0, 201, 219);
+.btn-solid-lg-gold:hover {
+	background-color: transparent;
+	color: #d6bd68;
 	text-decoration: none;
 }
 
@@ -309,7 +308,7 @@ a.white {
 }
 
 .footer-icon {
-	width: 75%;
+	width: 50%;
 	padding-bottom: 0.5rem;
 }
 
@@ -320,6 +319,11 @@ a.white {
 
 .a-disabled {
 	text-decoration: none;
+}
+
+.text-justify {
+	text-align: justify;
+	text-justify: inter-word;
 }
 
 /***************************************************************************************************************************************************/
@@ -520,6 +524,24 @@ input[type='checkbox'] {
 .form-control-submit-button:hover {
 	background-color: transparent;
 	color: #00c9db;
+}
+
+.form-control-submit-button-gold {
+	display: inline-block;
+	width: 100%;
+	height: 3.125rem;
+	border: 1px solid #d6bd68;
+	border-radius: 1.5rem;
+	background-color: #d6bd68;
+	color: #fff;
+	font: 700 0.75rem/1.75rem "Montserrat", sans-serif;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.form-control-submit-button-gold:hover {
+	background-color: transparent;
+	color: #d6bd68;
 }
 
 .help-block.with-errors .list-unstyled {
@@ -884,7 +906,7 @@ input[type='checkbox'] {
 /* Header */
 /***************************************************************************************************************************************************/
 .header {
-	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/backgrounds/background.png') center center no-repeat;
+	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/backgrounds/background-city.png') center center no-repeat;
 	background-size: cover;
 
 	/* Create the parallax scrolling effect */
@@ -902,7 +924,7 @@ input[type='checkbox'] {
 }
 
 .header .text-container {
-	margin-bottom: 3rem;
+	margin-bottom: 1rem;
 }
 
 .header h1 {
@@ -928,7 +950,7 @@ input[type='checkbox'] {
 .slider-1 {
 	padding-top: 6.875rem;
 	padding-bottom: 6.375rem;
-	background-color: #242e31;
+	background-color: #2c383d;
 }
 
 .slider-1 .slider-container {
@@ -982,14 +1004,27 @@ input[type='checkbox'] {
 	margin-bottom: 0;
 }
 
+.testimonial-authority {
+	margin-bottom: 4rem;
+	padding: 1rem;
+	border-radius: 2rem;
+	background: linear-gradient(rgba(0, 201, 219, 0.0), rgba(0, 201, 219, 0.20));
+}
+
 /***************************************************************************************************************************************************/
-/* Treinamento - Tabs */
+/* Offer */
 /***************************************************************************************************************************************************/
-.product {
+/*.offer {
+	padding-top: 6.875rem;
+	padding-bottom: 6.875rem;
+	background-color: #242e31;
+}*/
+
+.offer {
 	padding-top: 6.5rem;
 	padding-bottom: 4.25rem;
 	background-color: #2c383d;
-	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/hacktown23.png') center center no-repeat;
+	background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('../images/backgrounds/mts23-2.jpg') center center no-repeat;
 	background-size: cover;
 
 	/* Create the parallax scrolling effect */
@@ -1000,11 +1035,31 @@ input[type='checkbox'] {
 	background-size: cover;
 }
 
+.offer-block {
+	margin-bottom: 2rem;
+	padding: 2rem;
+	border-radius: 2rem;
+	background: linear-gradient(rgba(0, 201, 219, 0.0), rgba(0, 201, 219, 0.1));
+}
+
+.offer-highlight {
+	margin-bottom: 2rem;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	background: linear-gradient(rgba(0, 201, 219, 0.0), rgba(214, 189, 104, 0.5));
+	border-radius: 2rem;
+}
+
+/***************************************************************************************************************************************************/
+/* Público Alvo */
+/***************************************************************************************************************************************************/
 .tabs {
 	padding-top: 6.5rem;
 	padding-bottom: 4.25rem;
 	background-color: #2c383d;
-	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/mts23.png') center center no-repeat;
+	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/mts23-1.png') center center no-repeat;
 	background-size: cover;
 
 	/* Create the parallax scrolling effect */
@@ -1257,11 +1312,26 @@ input[type='checkbox'] {
 /* end of video play button */
 
 /***************************************************************************************************************************************************/
-/* Metodologia - Basic 2 / Basic 3 */
+/* Content - Basic 2 / Basic 3 */
 /***************************************************************************************************************************************************/
 .basic-2 {
 	padding-bottom: 4rem;
-	background-color: #242e31;
+	background-color: #2c383d;
+}
+
+.content {
+	padding-top: 6.5rem;
+	padding-bottom: 4.25rem;
+	background-color: #2c383d;
+	background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('../images/backgrounds/cyber-talks.png') center center no-repeat;
+	background-size: cover;
+
+	/* Create the parallax scrolling effect */
+	min-height: 500px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .basic-2 img {
@@ -1358,9 +1428,18 @@ input[type='checkbox'] {
 /* Modules - Slider 2 */
 /***************************************************************************************************************************************************/
 .slider-2 {
-	padding-top: 6.875rem;
-	padding-bottom: 6.875rem;
+	padding-top: 6.5rem;
+	padding-bottom: 4.25rem;
 	background-color: #2c383d;
+	background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/backgrounds/hacktown23.png') center center no-repeat;
+	background-size: cover;
+
+	/* Create the parallax scrolling effect */
+	min-height: 500px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .slider-2 .slider-container {
@@ -1398,11 +1477,29 @@ input[type='checkbox'] {
 }
 
 .module-title {
-	padding-top: 4rem;
+	line-height: 150%;
 }
 
 .module-icon {
-	padding-top: 1.5rem;
+	width: 8%;
+}
+
+.module-image {
+	border-radius: 2rem;
+}
+
+.module-block {
+	margin-bottom: 2rem;
+	padding: 1rem;
+	border-radius: 2rem;
+	background: linear-gradient(rgba(0, 201, 219, 0.0), rgba(0, 201, 219, 0.1));
+}
+
+.module-highlight {
+	margin-bottom: 2rem;
+	padding: 1rem;
+	background: linear-gradient(rgba(0, 201, 219, 0.0), rgba(214, 189, 104, 0.5));
+	border-radius: 2rem;
 }
 
 /***************************************************************************************************************************************************/
@@ -1445,7 +1542,7 @@ input[type='checkbox'] {
 .counter {
 	padding-top: 6.5rem;
 	padding-bottom: 5.375rem;
-	background-color: #2c383d;
+	background-color: #242e31;
 	text-align: center;
 }
 
@@ -1637,7 +1734,7 @@ a:hover.back-to-top {
 .ex-basic-2 {
 	padding-top: 4.75rem;
 	padding-bottom: 4rem;
-	background-color: #242e31;
+	background-color: #2c2c2c;
 }
 
 .ex-basic-2 h3 {
@@ -1696,6 +1793,10 @@ a:hover.back-to-top {
 	text-decoration: none;
 }
 
+.no-underline-hover, .no-underline-hover:visited, .no-underline-hover:hover, .no-underline-hover:active {
+	text-decoration: none;
+}
+
 /***************************************************************************************************************************************************/
 /* iOS Devices Supported Background Attachment */
 /***************************************************************************************************************************************************/
@@ -1715,7 +1816,8 @@ a:hover.back-to-top {
 
 	/* Gustavo Celani */
 	.basic-4 .round-corners {
-		font-size: 75%;
+		font-size: 80%;
+		line-height: 150%;
 	}
 
 	.basic-4 .round-corners img {
@@ -1779,8 +1881,15 @@ a:hover.back-to-top {
 	#content .divider {
 		display: none;
 	}
+	#content .module-image {
+		margin-bottom: 1rem;
+	}
+	#content .module-icon {
+		display: none;
+	}
 	#content .module-title {
-		padding-top: 0;
+		padding: 0;
+		margin-bottom: 1rem;
 	}
 	#content .module-row {
 		margin-top: 2rem;
@@ -2065,7 +2174,7 @@ a:hover.back-to-top {
 	}
 
 	.header .text-container {
-		margin-top: 6.5rem;
+		margin-top: 0;
 	}
 
 	.header-img-big iframe {
@@ -2258,7 +2367,7 @@ a:hover.back-to-top {
 
 	/* Header */
 	.header .text-container {
-		margin-top: 7.5rem;
+		margin-top: 0;
 		margin-left: 2.5rem;
 	}
 
