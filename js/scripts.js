@@ -811,7 +811,7 @@ function closePopup(closeButtonId) {
             '<b class="gold" style="font-size: medium">EXCLUSIVO NO TREINAMENTO ONLINE</b><br>Módulo totalmente prático onde eu, literalmente, hackeio um servidor web utilizando as metodologias e estratégias apresentadas de tal forma que você internalize todas as etapas de uma invasão e desenvolva sua mentalidade para compreender a linha de raciocínio que eu utilizo nos PenTests e, consequentemente, seja capaz de reproduzir essa mesma linha de pensamento em qualquer outro teste de intrusão.',
             [
                 'Hackeando um Servidor Web na Prática',
-                'Mindset Hacker'
+                'Mentalidade Hacker'
             ],
             true
         ));
