@@ -486,13 +486,17 @@ function closePopup(closeButtonId) {
     }
 
     function leadFormSuccessCupom(apiResponse) {
+
         // Success Offer Message
         leadFormMessage(
             'success',
-            // '<a id="offer-button" target="_blank" class="event-cta btn-solid-lg-gold text-center" style="font-size: x-large" href="' + apiResponse['url'] + '"><i class="fas fa-ticket-alt"></i> ACESSAR OFERTA</a>'
-            '<i class="fas fa-fire"></i> PARABÉNS' +
-            '<br><p>Você será notificado com antecedência!</p>'
 
+            // Cupom Success Message
+            '<a id="offer-button" target="_blank" class="event-cta btn-solid-lg-gold text-center" style="font-size: x-large" href="' + apiResponse['url'] + '"><i class="fas fa-ticket-alt"></i> ACESSAR OFERTA</a>'
+
+            // Waiting List Success Message
+            // '<i class="fas fa-fire"></i> PARABÉNS' +
+            // '<br><p>Você será notificado com antecedência!</p>'
         )
 
         // Hide and Reset Form
@@ -503,7 +507,7 @@ function closePopup(closeButtonId) {
         $("textarea").removeClass('notEmpty');
 
         // Open Offer Checkout
-        // window.open(apiResponse['url'], '_blank');
+        window.open(apiResponse['url'], '_blank');
     }
 
     function leadFormSuccessSorteio(apiResponse) {
