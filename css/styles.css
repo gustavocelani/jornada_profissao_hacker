@@ -945,6 +945,48 @@ input[type='checkbox'] {
 }
 
 /***************************************************************************************************************************************************/
+/* Header LA */
+/***************************************************************************************************************************************************/
+.header-la {
+	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/backgrounds/hollywood.png') center center no-repeat;
+	background-size: cover;
+
+	/* Create the parallax scrolling effect */
+	min-height: 800px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.header-la .header-content {
+	padding-top: 8.5rem;
+	padding-bottom: 7rem;
+	text-align: center;
+}
+
+.header-la .text-container {
+	margin-bottom: 1rem;
+}
+
+.header-la h1 {
+	margin-bottom: 1rem;
+}
+
+.header-la #js-rotating {
+	color: #40e0ee;
+}
+
+.header-la .p-large {
+	margin-bottom: 2rem;
+}
+
+.header-la .btn-solid-lg {
+	margin-right: 0.5rem;
+	margin-bottom: 1.25rem;
+}
+
+/***************************************************************************************************************************************************/
 /* Testimonials - Slider 1 */
 /***************************************************************************************************************************************************/
 .slider-1 {
@@ -1542,7 +1584,7 @@ input[type='checkbox'] {
 .counter {
 	padding-top: 6.5rem;
 	padding-bottom: 5.375rem;
-	background-color: #242e31;
+	/* background-color: #242e31; */
 	text-align: center;
 }
 
