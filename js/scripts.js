@@ -542,7 +542,7 @@ function closePopup(closeButtonId) {
             '<br><i class="fas fa-ticket-alt"></i> Número da Sorte: ' + apiResponse['row'] +
             '<br><p>O sorteio acontecerá em breve!</p>' +
             '<br><p>Enquanto isso...</p>' +
-            '<a class="btn-solid-lg text-center" href="index.html">SAIBA MAIS SOBRE A JORNADA</a>'
+            '<a class="btn-solid-lg text-center" href="index.html">CONHEÇA O PROFISSÃO HACKER</a>'
         )
 
         // Hide and Reset Form
