@@ -36,12 +36,12 @@ switch (window.location.pathname.includes("jornada_profissao_hacker") ? window.l
         currentPage = "/sorteio/result";
         break;
     
-    // LA
-    case "/la":
-    case "/la/":
-    case "/la/index":
-    case "/la/index.html":
-        currentPage = "/la";
+    // Travel
+    case "/travel":
+    case "/travel/":
+    case "/travel/index":
+    case "/travel/index.html":
+        currentPage = "/travel";
         break;
 
     // Index
@@ -95,10 +95,10 @@ function closePopup(closeButtonId) {
             populateProvasLinkedIn();
         }
 
-        // LA
+        // Travel
         console.log(currentPage)
-        if (["/la"].includes(currentPage)) {
-            startCountdownToTime(new Date(2024, 10, 24).getTime());
+        if (["/travel"].includes(currentPage)) {
+            startCountdownToTime(new Date(2025, 2, 11).getTime());
         }
 
         // /sorteio-resultado Dynamic Content
