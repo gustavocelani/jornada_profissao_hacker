@@ -945,10 +945,10 @@ input[type='checkbox'] {
 }
 
 /***************************************************************************************************************************************************/
-/* Header LA */
+/* Header Travel */
 /***************************************************************************************************************************************************/
-.header-la {
-	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/backgrounds/hollywood.png') center center no-repeat;
+.header-travel {
+	background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://s42493.pcdn.co/wp-content/uploads/2024/02/BA1_0875.jpg') center center no-repeat;
 	background-size: cover;
 
 	/* Create the parallax scrolling effect */
@@ -959,29 +959,29 @@ input[type='checkbox'] {
 	background-size: cover;
 }
 
-.header-la .header-content {
+.header-travel .header-content {
 	padding-top: 8.5rem;
 	padding-bottom: 7rem;
 	text-align: center;
 }
 
-.header-la .text-container {
+.header-travel .text-container {
 	margin-bottom: 1rem;
 }
 
-.header-la h1 {
+.header-travel h1 {
 	margin-bottom: 1rem;
 }
 
-.header-la #js-rotating {
+.header-travel #js-rotating {
 	color: #40e0ee;
 }
 
-.header-la .p-large {
+.header-travel .p-large {
 	margin-bottom: 2rem;
 }
 
-.header-la .btn-solid-lg {
+.header-travel .btn-solid-lg {
 	margin-right: 0.5rem;
 	margin-bottom: 1.25rem;
 }
