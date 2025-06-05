@@ -98,7 +98,7 @@ function closePopup(closeButtonId) {
         // Travel
         console.log(currentPage)
         if (["/travel"].includes(currentPage)) {
-            startCountdownToTime(new Date(2025, 2, 11).getTime());
+            startCountdownToTime(new Date(2025, 6, 24).getTime());
         }
 
         // /sorteio-resultado Dynamic Content
